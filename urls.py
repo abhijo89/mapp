@@ -15,7 +15,7 @@ urlpatterns = patterns('main',
     url(r'^admin/', include(admin.site.urls)),
 )
 
-rlpatterns += patterns('front_end',
+urlpatterns += patterns('front_end',
       #TEmplate view
       url(r'^new_account$','views.register_view',name='register_view'),
       #From submit
