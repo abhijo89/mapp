@@ -1,0 +1,27 @@
+[buildout]
+parts =
+  django
+
+eggs =
+	
+    	django-markitup == 0.5.2
+	django-robots == 0.7.0
+        BeautifulSoup == 3.2.0
+	zc.buildout==1.6.3
+
+include-site-packages = false	
+versions = versions
+
+[versions]
+django = 1.3
+[sample]
+	recipe = zc.recipe.eggs
+[django]
+recipe = djangorecipe
+
+eggs =
+    ${buildout:eggs}
+    markdown
+	
+project = mapp
+settings = development

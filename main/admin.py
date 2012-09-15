@@ -1,4 +1,4 @@
-from main.models import *
+from mapp.main.models import *
 from django.contrib import admin
 
 from django.core.urlresolvers import reverse

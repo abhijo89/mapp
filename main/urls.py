@@ -3,7 +3,7 @@ from django.conf import settings
 from django.contrib import admin
 admin.autodiscover()
 
-urlpatterns = patterns('main',
+urlpatterns = patterns('mapp.main',
 
     url(r'^$', 'views.index', name='index'),
 
