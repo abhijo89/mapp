@@ -114,10 +114,10 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'mapp.main',
-    'mapp.front_end',
-    'mapp.metatag',
-    'mapp.recaptcha_works',
-    'mapp.tracking',
+    #'mapp.front_end',
+    #'mapp.metatag',
+    #'mapp.recaptcha_works',
+    #'mapp.tracking',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
