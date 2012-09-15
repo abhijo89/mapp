@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <div style="visibility: hidden">
+        <br />
+        <a href="http://apycom.com/"></a>
+        <br />
+    </div>
+    
+    <head>{% load metatag_tags %} {% metatag_populate %}
+        <title>{% if metatag.title %}{{ metatag.title }}{%else%}{% block title %}{% endblock %}{% endif %}</title>
+        <meta name="description" content="{{ metatag.description }} {% block description %}{% endblock %}"/>
+        <link rel="icon" type="image/ico" href="{% url index %}favicon.ico" />
+        <link rel="icon" href="{{ MEDIA_URL }}images/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="{{ MEDIA_URL }}images/favicon.ico" type="image/x-icon"> 
+        <meta name="keywords" content="{{ metatag.keywords }} {% block keywords %}{% endblock %} " />{% if metatag.google_pagetrack_category %}
+        <meta name="google-site-verification"content="{{ metatag.google_pagetrack_category }}">{% endif %}
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+        <link type="text/css" rel="stylesheet" media="screen" href="{{ MEDIA_URL }}js/fancybox/jquery.fancybox-1.3.4.css">
+        <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery-1.6.2.min.js"></script>
+        <script type="text/javascript" src="{{ MEDIA_URL }}js/fancybox/jquery.fancybox-1.3.4.js"></script>
+        <script type="text/javascript" src="{{ MEDIA_URL }}js/highcharts.js"></script>
+        <script type="text/javascript" src="{{ MEDIA_URL }}js/themes/grid.js"></script>
+        <script type="text/javascript" src="{{ MEDIA_URL }}js/modules/exporting.js"></script>
+        <link rel="stylesheet" href="{{ MEDIA_URL }}css/menu.css" type="text/css" media="screen">
+        <link rel="stylesheet" href="{{ MEDIA_URL }}css/style.css" type="text/css" media="screen">
+        <script type="text/javascript" src=" {{ MEDIA_URL }}js/menu.js"></script>
+        <style>
+             #container {-moz-border-radius: 11px;-webkit-border-radius: 11px;border-radius: 11px;behavior:url("{{ MEDIA_URL }}css/PIE.htc");}
+             ul.menu{width: 1079px;}
+             body { margin: 0px; padding:0px 0px 0px 0px; font-family: verdana; font-size: 12px; color: #4d4d4d; line-height: 20px;  background-color: #7dcafc;  }
+            .my_account_link{display:block; float:right; width: 130px; height: 34px;background: url("{{ MEDIA_URL }}images/main/buttons/MyAccount.png") no-repeat 0 0;}
+            .my_account_link:hover{background-position: 0 -34px;}
+            .logout_link{float:right;display:block;width: 130px; height: 34px;background: url("{{ MEDIA_URL }}images/main/buttons/Logout.png") no-repeat 0 0;}
+            .logout_link:hover{background-position: 0 -34px;}
+            .edit_account_link{float:right;display:block; margin-top: 15px; width: 56px; height: 17px;background: url("{{ MEDIA_URL }}images/main/buttons/edit.png") no-repeat 0 0;}
+            h1 {float: left; font-size: 22px;font-weight:bold; height: 40px; color:#0099ff; line-height: 40px; text-align: center; margin: 0; }
+            /*Error box styling*/
+            #error { display: none; }
+            #errorbox { padding: 26px; float: left; }
+            #errorbox h1 { color: #27a9ff !important; width: 100%; }
+            .bottom-gray-border { text-align: center; width: 100%; background: url({{ MEDIA_URL }}images/main/border.png) center bottom repeat-x transparent; padding-bottom: 10px; margin-bottom: 10px; color: #666; font-weight: bold; font-size: 16px; }
+            #errorbox .grey-div { width: 563px; padding: 10px; }
+            #errorbox p { margin: 5px 10px; }
+            #errorbox .buttons { margin: 2px auto; }
+            #errorbox .buttons .ok-button { float: left; }
+            #errorbox .buttons .cancel-button { float: right; }
+            
+            /* Buttons */
+            .ok-button, .cancel-button, .buy-now-button, .print-button ,.orangeButton_ViewDeals{ float: left; border: 0; margin:0; padding: 0; display: block; height: 34px; width: 104px; cursor: pointer;  }
+            .ok-button:hover, .cancel-button:hover, .buy-now-button:hover, .print-button:hover ,.orangeButton_ViewDeals:hover{ background-position: 0 -34px; }
+            
+            .ok-button{ background: url({{ MEDIA_URL }}images/main/buttons/orangeButton_OK.png) 0 0 no-repeat transparent;}
+            .cancel-button{ background: url({{ MEDIA_URL }}images/main/buttons/orangeButton_Cancel.png) 0 0 no-repeat transparent;}
+        </style>
+	{% if metatag.google_pagetrack_customvar %}
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', '{{metatag.google_pagetrack_customvar}}']);
+            _gaq.push(['_trackPageview']);
+
+            (function () {
+                var ga = document.createElement('script');
+                ga.type = 'text/javascript';
+                ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
+	{% endif %}
+        <script type="text/javascript">
+            var css_file = "";
+            if ($.browser.msie) {
+                switch ($.browser.version) {
+                case "6.0":
+                    css_file += "ie6";
+                    break;
+                case "7.0":
+                    css_file += "ie7";
+                    break;
+                default:
+                    css_file += "ie8";
+                    break;
+                }
+            } else if ($.browser.mozilla) {
+                css_file += "mozilla";
+            } else if ($.browser.webkit) {
+                css_file += "chrome";
+            } else if ($.browser.opera) {
+                css_file += "opera";
+            } else css_file += "chrome";
+            document.write('<link href="{{ MEDIA_URL }}css/' + css_file + '_packaged.css" media="screen" rel="stylesheet" type="text/css" />');
+            
+            function error(title, subject, body, buttons, callback){
+              //error popup
+              if (title) {
+                $('#error-title').html(title);
+              }	
+              
+              if (subject) {
+                $('#error-subject').html(subject).css('display, block');
+              } else {
+                $('#error-subject').css('display', 'none');
+              }
+              
+              if (body) {
+                $('#error-body').html(body);
+              }
+              
+              if (buttons == 'ok') {
+                $('.buttons').html('<div class="ok-button"></div>').css('width', '107px');
+              } else {
+                $('.buttons').html('<div class="ok-button"></div><div class="cancel-button"></div>').css('width', '217px');
+              }
+              
+              $('#error').fancybox({
+                'padding'			: 0,
+                 'width'			: 635, 
+                 'autoDimensions'	: true,
+                'opacity'			: true,
+                'overlayShow'		: true,
+                'showCloseButton' 	:false,
+                'hideOnOverlayClick' : false,
+                'transitionIn'		: 'fade',
+                'transitionOut'		: 'fade',
+                'overlayColor'  	: '#4fb9ff',
+              }).trigger('click');
+          
+            }
+    $(document).ready(function(){
+			$('.ok-button').live('click', function(){
+				$.fancybox.close();
+        {% block error_box_ok %}
+
+				{% endblock %}
+			});		
+      $('.cancel-button').live('click', function(){
+				$.fancybox.close();
+			});		
+    });
+    </script>
+    {% block extra-head %}{% endblock %}
+    </head>
+    
+    <body>
+      <div id="top">
+        <div class="main">
+            <div id='header'>
+                <div class='left logo'>
+                    <a href="#"><img src="{{ MEDIA_URL }}img/logo.png"></a>
+                    <h2>Muvidb : International Movie Database</h2>
+                </div>
+                <div class='linksMid left'>
+                    <ul class='links right'></ul>
+                    <div class='hidden' id='login'></div>
+                    <div class='hidden' id='registration'></div>
+                </div>
+                <div class="right">
+                    {% if not user.is_anonymous %}
+                      <a class="my_account_link" href="{% url myaccount %}" alt="My Account"></a>
+                      <a class="logout_link" href="{% url logout %}" alt="Logout"></a>
+                    {% endif %}
+                </div>
+                <div class='clear'></div>
+                <div id="menu">
+                    <ul class="menu">
+		      {% for nav in navigations %} 
+		      <li><a href="{{ nav.get_absolute_url }}" class="parent"><span>{{ nav }}</span></a>
+		      <div><ul>
+			 {% for sn in nav.subnavigation_set.all %}
+                        <li><a href="{{ sn.get_absolute_url }}"><span>{{sn.title}}:</span></a></li>
+			{% endfor %}
+                    </ul></div>
+		      </li>
+			
+			{% endfor %}
+		    </ul>
+                </div>
+            </div>
+            <div class='clear'></div>
+            <div id="wrapper">{% block content %} {% endblock %}
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="likeBox left">
+                
+            </div>
+            <div class="col left">
+                <h3>Our team</h3>
+                <hr>
+                <ul>
+                  {%for name in members %}
+                    <li>{{name}}</li>
+                  {% endfor %}
+                </ul>
+            </div>
+             <div class="col left">
+                <h3>Statistics</h3>
+                <hr>
+                <ul>
+                    <li>Total user visit :</li>
+                    <li>Total Movie : </li>
+                    <li>Total Rewiew :</li>
+                    <li>Total Users :</li>
+                </ul>
+            </div>
+             <div class="col left">
+                <h3>Dovelopers</h3>
+                <hr>
+                <ul>
+                    <li>Get API </li>
+                    <li>Documentation</li>
+                    <li>FAQ</li>
+                    <li>Blog</li>
+                </ul>
+            </div>
+            <div class="footerBottom"></div>
+        </div>
+    </div>
+    <a id="error" href="#errorbox">Error</a>
+	<div style="display: none;">
+		<div id="errorbox">
+			<h1 id="error-title">Oops! Something Happened Here</h1>
+			<div class="clear"></div>
+			<div class="rounded_corner grey-div">
+				<h2 class="bottom-gray-border" id="error-subject">Title or name of the error goes here</h2>
+				<div class="clear"></div>
+				<p id="error-body">Lorem ipsum text here</p>
+			</div>
+			<div class="buttons">
+				<div class="ok-button"></div>
+				<div class="cancel-button"></div>
+			</div>
+		</div>
+	</div>
+</html>

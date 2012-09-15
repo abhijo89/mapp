@@ -1,0 +1,101 @@
+{% extends "main/base.html" %}
+{% load movie_tags %}
+
+{% block title %} Information about {{ movie.title|title }}{% endblock %}
+{% block description %}{{ movie.summary}} {% endblock %}
+{% block keywords %} {% endblock %}
+{% block extra-head %}
+	<style>
+		.container {margin-right: 20px; width: 800px; margin-top: 6px;padding-top: 10px;}
+		.movie_info_content{width:774px;float: none;}
+		.content-widget {width:200px; float: none;}
+		.movie_photo{display:block; width: 200px; height: 250px;margin-left: 0px; margin-right: 20px; margin-bottom: 20px;float: left;}
+		.movie_basic_info {float:left;min-height: 250px; width: 540px;}
+		.label-div {width: 130px; display:block; float: left;}
+		.td-div{min-width: 100px; }
+		.cast_photo{display:block; width: 100px; height: 100px;margin-left: 0px; margin-right: 5px; float: left;}
+	</style>
+{% endblock %}
+
+{% block content %} 
+
+{# MAIN BLOCK TO SHOW ALL INFORMARION #}
+<div class="sidebar left">
+  {% block sidebar-left %}
+		<div class="aux-content-widget-2 content-widget">
+			{# COUNT INFORMATION and RELATED movies#}
+			<div>
+					{# Basic information ablot movie such as name,rating,year, mapp,total vote,totalreview,total vitited users ect#}
+			</div>
+			<div>
+					{# Person information Cast list , diractor, writer etc #}
+			</div>
+			<div>
+					{# Person information Cast list , diractor, writer etc #}
+			</div>
+		</div>
+		
+  {% endblock %}
+</div>
+<div class="container right">
+			<div class="aux-content-widget-2 movie_info_content">
+				{# Movie info #}
+				<div>
+						{# Basic information ablot movie such as name,rating,year, mapp,total vote,totalreview,total vitited users ect#}
+						<div class='movie_photo'>
+							
+						</div>
+						<div class='movie_basic_info'>
+								<h2>{{ movie.title|title }}</h2>
+								<label class='label-div'>Genre(s)</label> :{% for genre in movie.genres.all%} {{ genre }}, {% endfor %} <br>
+								<label class='label-div'>Language(s)</label> :{% for language in movie.languages.all%} {{ language }}, {% endfor %} <br>
+								<label class='label-div'>Countrie(s)</label> :{% for countrie in movie.countries.all%} {{ countrie }}, {% endfor %} <br>
+								<label class='label-div'>Year</label> : {{ movie.year }} <br>
+								<label class='label-div'>Aspect Ratio</label> : {{ movie.aspect_ration }} <br>
+								<label class='label-div'>mpaa</label> : {{ movie.mpaa }} <br>
+								<label class='label-div'>Rating </label> : {{ movie.rating }} <br>
+								<label class='label-div'>Plot Outline</label> : {{ movie.plot_outline }} <br>
+								<label class='label-div'>Writer(s)</label> :{% for writer in movie.writer.all%} {{ writer }}, {% endfor %} <br>
+								<label class='label-div'>Producer(s)</label> :{% for producer in movie.producer.all%} {{ producer }}, {% endfor %} <br>
+								<label class='label-div'>Director(s)</label> :{% for director in movie.director.all%} {{ director }}, {% endfor %} <br>
+								<label class='label-div'>Certificates(s)</label> :{% for certificat in movie.certificates.all%} {{ certificat }}, {% endfor %} <br>
+								
+						</div>
+						<div class='clear'></div>
+				</div>
+			</div>
+			<div class="aux-content-widget-2 movie_info_content">
+			{# Video list #}
+			
+				<table width=90% style="margin: 10px 30px;">
+					<tr class='GrayHeaderBox'>
+						<td class='td-div'></td>
+						<td class='td-div'>Cast </td>
+						<td class='id-div'>Charactor</td>
+					</tr>
+					
+					{%for cast in movie.cast.all %}
+					<tr>
+						<td><img class='cast_photo' src="{{MEDIA_URL}}person/{{cast.name|get_cast_photo}}"></td>
+						<td>{{cast.name}}</td>
+						<td>{{cast.charactor|get_cast_charactor_name}}</td>
+					</tr>
+						
+					{% endfor %}
+				</table>
+			
+		</div>
+		<div class="aux-content-widget-2 movie_info_content">
+			{# Cast and charactor #}
+			<div>
+					{# Basic information ablot movie such as name,rating,year, mapp,total vote,totalreview,total vitited users ect#}
+			</div>
+		</div>
+		<div class="aux-content-widget-2 movie_info_content">
+			{# Other information #}
+			<div>
+					{# Basic information ablot movie such as name,rating,year, mapp,total vote,totalreview,total vitited users ect#}
+			</div>
+		</div>
+</div>
+{% endblock %}
