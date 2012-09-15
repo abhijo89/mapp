@@ -4,7 +4,7 @@ from autoregister import autoregister
 from django.contrib import admin
 admin.autodiscover()
 autoregister('main')
-urlpatterns = patterns('mapp.main',
+urlpatterns = patterns('main',
     # ============= MAIN URL ===============================
     url(r'^$', 'views.index', name='index'),
     url(r'^home/$', 'views.home', name='home'),
