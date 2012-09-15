@@ -3,7 +3,7 @@ from autoregister import autoregister
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
-autoregister('mapp.main')
+autoregister('main')
 urlpatterns = patterns('mapp.main',
     # ============= MAIN URL ===============================
     url(r'^$', 'views.index', name='index'),
