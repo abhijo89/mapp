@@ -115,7 +115,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'mapp.main',
     #'mapp.front_end',
-    #'mapp.metatag',
+    'mapp.metatag',
     #'mapp.recaptcha_works',
     #'mapp.tracking',
 )
