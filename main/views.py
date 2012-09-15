@@ -8,7 +8,7 @@ from django.conf import settings
 from models import *
 from form import *
 from datetime import datetime
-from front_end.models import *
+from mapp.front_end.models import *
 from django.core.mail import send_mail
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
