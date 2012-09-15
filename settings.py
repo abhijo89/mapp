@@ -128,7 +128,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.media",
     "django.core.context_processors.static",
     "django.contrib.messages.context_processors.messages",
-    "mapp.main.context_processors.menu"
+    "context_processors.menu"
 )
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
