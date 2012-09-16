@@ -58,7 +58,8 @@ def contactview(request):
 
 		if subject and message and from_email:
 			try:
-					EmailMessage(subject, message, from_email, ['admin@muvidb.com'])
+					email =  EmailMessage(subject, message, from_email, ['admin@muvidb.com'])
+					email.send(fail_silently=True)
 			except :
 				return HttpResponse('Invalid header found.')
 			return HttpResponseRedirect(reverse('index'))
