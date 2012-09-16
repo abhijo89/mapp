@@ -7,6 +7,7 @@ admin.autodiscover()
 autoregister('main')
 autoregister('front_end')
 autoregister('tracking')
+autoregister('metatag')
 urlpatterns = patterns('main',
     # ============= MAIN URL ===============================
     url(r'^$', 'views.index', name='index'),
