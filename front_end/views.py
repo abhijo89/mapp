@@ -219,14 +219,15 @@ def search(request,category):
 def search_movie_by_category(request,category,category_item):
 	
 	context = {}
-	category_item = Languages.objects.get(name=category_item)
 	if category == 'Language':	
-		
+		category_item = Languages.objects.get(name=category_item)
 		movie_list = category_item.Languages_M2M_Movie.all()
 	elif category == 'Country':
-		movie_list = Countries.objects.all()
+		category_item = Countries.objects.get(name=category_item)
+		movie_list = category_item.Country_M2M_Movie.all()
 	elif category == 'Genres':
-		movie_list = Genre.objects.all()
+		category_item = Genre.objects.get(name=category_item)
+		movie_list = category_item.Genres_M2M_Movie.all()
 	paginator = Paginator(movie_list, paginator_total_result_count) 
 	page = int(request.GET.get('page', 1))
 
