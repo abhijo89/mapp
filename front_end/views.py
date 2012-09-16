@@ -8,6 +8,7 @@ from django.template import RequestContext
 from django.http import HttpResponseRedirect, HttpResponse
 from django.utils import simplejson
 from main.form import *
+from main.models import *
 from django.contrib.auth import authenticate, login, logout
 from helper import *
 from models import *
@@ -170,3 +171,28 @@ def delete_pic(request):
 	import json
 	to_return = {'message' : 'Profile picture reset ...', 'success' : True }
 	return HttpResponse(json.dumps(to_return), mimetype='application/json')
+
+#SEARCH 
+def search_index(request):
+	context = {}
+	category ={}
+	category ['Country'] = 0
+	category ['Language'] = 0
+	category ['Genres'] = 0
+	context['categorys'] = category
+	return render_to_response('main/search_index.html', context, context_instance = RequestContext(request))
+	
+def search(request,category):
+	context ={}
+	category = category.title()
+
+	if category == 'Language':
+		
+		category_item = Languages.objects.all()
+	elif category == 'Country':
+		category_item = Countries.objects.all()
+	elif category == 'Genres':
+		category_item = Genre.objects.all()
+	context['categorys'] = category_item
+	context['category_name'] = category
+	return render_to_response('main/search_category.html', context, context_instance = RequestContext(request))

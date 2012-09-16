@@ -1,0 +1,28 @@
+{% extends "main/index.html" %}
+{% block extra-head %}
+	{{ block.super }}
+	<style>
+		.search_box{
+			padding-right: 0; 
+			padding-left: 0; 
+			float: left;
+			margin-left: 20px; 
+			margin-top: 20px;
+		}
+		.category{
+			display: block;
+			float: left;
+			margin: 5px;
+			padding: 5px;
+		}
+	</style>
+{% endblock %}
+{% block main-container %}
+<h1>Search by {{category_name}}</h1>
+<div class="clear"></div>
+<div class="search_box">
+{% for item in categorys%}
+	<div class="category"><a href="#">{{item.name}}</a> </div>
+{% endfor %}
+</div>
+{% endblock %}

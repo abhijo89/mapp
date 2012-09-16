@@ -166,11 +166,14 @@
                     <ul class="menu">
 		      {% for nav in navigations %} 
 		      <li><a href="{{ nav.get_absolute_url }}" class="parent"><span>{{ nav }}</span></a>
-		      <div><ul>
-			 {% for sn in nav.subnavigation_set.all %}
-                        <li><a href="{{ sn.get_absolute_url }}"><span>{{sn.title}}:</span></a></li>
-			{% endfor %}
+		      
+				  {%if nav.subnavigation_set.all %}
+					<div><ul>
+					 {% for sn in nav.subnavigation_set.all %}
+								<li><a href="{{ sn.get_absolute_url }}"><span>{{sn.title}}:</span></a></li>
+					 {% endfor %}
                     </ul></div>
+                   {% endif %}
 		      </li>
 			
 			{% endfor %}

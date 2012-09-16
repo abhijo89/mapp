@@ -28,6 +28,9 @@ urlpatterns += patterns('front_end',
       url(r'^home/myaccount/edit_profile_page/$','views.edit_profile_page',name='edit_profile_page'),
       url(r'home/myaccount/edit_profile_page/delete-pic/$', 'views.delete_pic', name='delete_pic'),
       url(r'home/myaccount/edit_profile_page/profile-pic/$', 'views.profile_pic', name='profile_pic'),
+      #Search
+      url(r'^home/search/$','views.search_index',name='search_index'),
+      url(r'^search/(?P<category>.*)/$','views.search',name='search'),
       
 
 )

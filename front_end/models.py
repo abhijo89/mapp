@@ -6,13 +6,14 @@ import datetime
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User, Group
 from main.models import Movie,Countries
+from django.contrib.sites.models import Site
 
 
 GENTER_CHOICES = (
     ('M', 'Male'),
     ('F', 'Female'),
 )
-
+current_site = Site.objects.get_current()
 class Navigation(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(unique=True)
@@ -22,7 +23,7 @@ class Navigation(models.Model):
     image = RemovableImageField(upload_to='images/navigations/', null=True, blank=True)
     publish = models.BooleanField(default=True)
     publish_date = models.DateTimeField(default=datetime.datetime.now())
-
+	
     class Meta:
         ordering = ['order',]
 
@@ -30,9 +31,10 @@ class Navigation(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        if 'home' in self.slug:
-            return ''
-        return '%s/' % (self.slug)
+		if 'home' in self.slug:
+			return current_site.domain
+            
+		return current_site.domain+'/home/%s/' % (self.slug)
 
     def save(self, **kwargs):
         dir = self.slug+'/'
@@ -69,7 +71,7 @@ class SubNavigation(models.Model):
         if self.external_url:
             return self.external_url
         else:
-            return '%s/%s/' % (self.navigation.slug, self.slug)
+            return current_site.domain+'/%s/%s/' % (self.navigation.slug, self.slug)
 
     def save(self, **kwargs):
         dir = self.navigation.slug+'/'+self.slug+'/'
