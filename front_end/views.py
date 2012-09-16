@@ -219,8 +219,9 @@ def search(request,category):
 def search_movie_by_category(request,category,category_item):
 	
 	context = {}
+	category_item = Languages.objects.get(name=category_item)
 	if category == 'Language':	
-		category_item = Languages.objects.get(name=category_item)
+		
 		movie_list = category_item.Languages_M2M_Movie.all()
 	elif category == 'Country':
 		movie_list = Countries.objects.all()
