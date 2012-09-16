@@ -1,6 +1,6 @@
 from django import template
 from django.conf import settings
-from movie.main.models import *
+from mapp.main.models import *
 from front_end.models import *
 
 register = template.Library()
