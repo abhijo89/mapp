@@ -41,20 +41,11 @@ def index(request,template=''):
   return render_to_response('main/startup.html', context, context_instance = RequestContext(request))
   
 def home(request,template='main/index.html'):
-  if request.user.is_anonymous():
-	return HttpResponseRedirect(reverse('index'))
-  today = datetime.date.today()
-  boxoffice_movies =Boxoffice.objects.order_by('-imdbid__rating')[:7]
-  intheater_movies =Intheaters.objects.order_by('-imdbid__rating')[:7]
-  
-  
-  context={
-    
-    'boxoffice_movies':boxoffice_movies,
-    'intheater_movies':intheater_movies
-  
-  }
-  return render_to_response('main/index.html', context, context_instance = RequestContext(request))
+	if request.user.is_anonymous():
+		return HttpResponseRedirect(reverse('index'))
+	today = datetime.date.today()
+	context = {}
+	return render_to_response('main/index.html', context, context_instance = RequestContext(request))
 
 def logout_view(request):
   logout(request)
