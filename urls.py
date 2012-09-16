@@ -6,6 +6,7 @@ from django.contrib import admin
 admin.autodiscover()
 autoregister('main')
 autoregister('front_end')
+autoregister('tracking')
 urlpatterns = patterns('main',
     # ============= MAIN URL ===============================
     url(r'^$', 'views.index', name='index'),
