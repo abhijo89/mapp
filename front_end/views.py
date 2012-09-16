@@ -62,7 +62,7 @@ def contactview(request):
 					email.send(fail_silently=True)
 			except :
 				return HttpResponse('Invalid header found.')
-			return HttpResponseRedirect(reverse('index'))
+				return HttpResponseRedirect(reverse('index'))
 		else:
 			return render_to_response('main/contacts.html', {'form': ContactForm()},context_instance = RequestContext(request))
 	
