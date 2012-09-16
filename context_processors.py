@@ -1,4 +1,5 @@
 from front_end.models import *
+from main.models import Boxoffice,Intheaters
 
 def menu(request):
 	navigations = Navigation.objects.filter(publish=True)
