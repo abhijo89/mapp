@@ -51,7 +51,24 @@ def sendusermail(email):
 	email.send(fail_silently=True)
 	return True
 	
+def contactview(request):
+		subject = request.POST.get('topic', '')
+		message = request.POST.get('message', '')
+		from_email = request.POST.get('email', '')
 
+		if subject and message and from_email:
+			try:
+					EmailMessage(subject, message, from_email, ['admin@muvidb.com'])
+			except :
+				return HttpResponse('Invalid header found.')
+			return HttpResponseRedirect(reverse('index'))
+		else:
+			return render_to_response('main/contacts.html', {'form': ContactForm()},context_instance = RequestContext(request))
+	
+		return render_to_response('main/contacts.html', {'form': ContactForm()},
+			context_instance = RequestContext(request))
+def thankyou(request):
+		return render_to_response('thankyou.html')
 def register_view(request,template='popup/register.html'):
 	form = RegistrationForm()
 	context={'form':form }

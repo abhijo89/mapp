@@ -32,6 +32,9 @@ urlpatterns += patterns('front_end',
       url(r'^home/search/$','views.search_index',name='search_index'),
       url(r'^search/(?P<category>.*)/$','views.search',name='search'),
       url(r'^search/(?P<category>.*)/(?P<category_item>.*).dhtml$','views.search_movie_by_category',name='search_movie'),
+      #Contact Us
+      url(r'^home/contact/thankyou/', 'views.thankyou',name='search_index'),
+      url(r'^home/contact-us/', 'views.contactview',name='contact-us'),
       
 
 )
