@@ -69,7 +69,8 @@ def contactview(request):
 		return render_to_response('main/contacts.html', {'form': ContactForm()},
 			context_instance = RequestContext(request))
 def thankyou(request):
-		return render_to_response('thankyou.html')
+		return render_to_response('main/thankyou.html')
+		
 def register_view(request,template='popup/register.html'):
 	form = RegistrationForm()
 	context={'form':form }
