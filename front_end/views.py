@@ -15,7 +15,26 @@ from models import *
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User, Group
 from django.core.mail import EmailMessage
+from django.core.paginator import Paginator
 
+paginator_total_result_count = 50
+
+def extra_context(paginator, all_results):
+	return  {'base_url' : None,
+			'is_paginated' : all_results.has_other_pages(),
+			'pages': paginator.num_pages,
+			'page': all_results.number,
+			'results_per_page': paginator.per_page,
+			'has_next': all_results.has_next(),
+			'has_previous': all_results.has_previous(),
+			'next': all_results.next_page_number(),
+			'previous': all_results.previous_page_number(),
+			'first_on_page': all_results.start_index(),
+			'last_on_page': all_results.end_index(),
+			'pages': paginator.num_pages,
+			'hits': paginator.count,
+			'page_range': paginator.page_range, }
+			
 #Functions 
 def sendusermail(email):
 	body = '''
@@ -196,3 +215,28 @@ def search(request,category):
 	context['categorys'] = category_item
 	context['category_name'] = category
 	return render_to_response('main/search_category.html', context, context_instance = RequestContext(request))
+	
+def search_movie_by_category(request,category,category_item):
+	
+	context = {}
+	if category == 'Language':	
+		category_item = Languages.objects.get(name=category_item)
+		movie_list = category_item.Languages_M2M_Movie.all()
+	elif category == 'Country':
+		category_item = Countries.objects.all()
+	elif category == 'Genres':
+		category_item = Genre.objects.all()
+	paginator = Paginator(movie_list, paginator_total_result_count) 
+	page = int(request.GET.get('page', 1))
+
+	try:
+		results_pages = paginator.page(page)
+	except : # Standard Exception 
+		# If page is out of range (e.g. 9999) or No page found, deliver last page of results.
+		results_pages = paginator.page(paginator.num_pages)	
+		
+	context['categorys'] = results_pages.object_list
+	context['category_name'] = category
+	context =  dict(context, **extra_context(paginator, results_pages))
+	return render_to_response('main/search_movie_list.html', context, context_instance = RequestContext(request))
+	

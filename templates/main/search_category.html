@@ -22,7 +22,7 @@
 <div class="clear"></div>
 <div class="search_box">
 {% for item in categorys%}
-	<div class="category"><a href="#">{{item.name}}</a> </div>
+	<div class="category"><a href="{%url search_movie category_name item.name %}">{{item.name}}</a> </div>
 {% endfor %}
 </div>
 {% endblock %}

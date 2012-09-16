@@ -1,0 +1,80 @@
+<style>
+ul{border:0; margin:0; padding:0;}
+
+#pagination-clean li{
+border:0; margin:0; padding:0;
+font-size:11px;
+list-style:none;
+}
+#pagination-clean li, #pagination-clean a{
+border:solid 1px #DEDEDE
+margin-right:2px;
+}
+#pagination-clean .previous-off,
+#pagination-clean .next-off {
+color:#888888
+display:block;
+float:left;
+font-weight:bold;
+padding:3px 4px;
+}
+#pagination-clean .next a,
+#pagination-clean .previous a {
+font-weight:bold;
+border:solid 1px #FFFFFF;
+}
+#pagination-clean .active{
+color:#00000
+font-weight:bold;
+display:block;
+float:left;
+padding:4px 6px;
+}
+#pagination-clean a:link,
+#pagination-clean a:visited {
+color:#0033CC
+display:block;
+float:left;
+padding:3px 6px;
+text-decoration:none;
+}
+#pagination-clean a:hover{
+text-decoration:none;
+}
+
+</style>
+{% spaceless %}
+ 
+{% if is_paginated %}
+<div class="paginator">
+	<ul id="pagination-clean">
+		{% if has_previous %}<li class="previous"><a href="?page={{ previous }}" title="Previous Page">&laquo; Previous</a></li>{% else %} <li class="previous-off">«Previous</li>{% endif %}
+		 
+		{% if not in_leading_range %}
+			{% for num in pages_outside_trailing_range %}
+				<li class="page"><a href="?page={{num}}" >{{ num }}</a></li>
+			{% endfor %}
+			...
+		{% endif %}
+		 
+		{% for num in page_numbers %}
+		  {% ifequal num page %}
+			<li class="active" title="Current Page">{{ num }}</li>
+		  {% else %}
+			<li class="page"><a href="?page={{ num }}" title="Page {{ num }}">{{ num }}</a></li>
+		  {% endifequal %}
+		{% endfor %}
+		 
+		{% if not in_trailing_range %}
+			...
+			{% for num in pages_outside_leading_range reversed %}
+				<li class="page"><a href="?page={{ num }}" >{{ num }}</a></li>
+			{% endfor %}
+		{% endif %}
+		 
+		{% if has_next %}<li class="next"><a href="?page={{ next }}" title="Next Page">Next &raquo;</a></li>{% else %}<li class="next-off">Next &raquo;</li>{% endif %}
+	</ul>
+</div> 
+{% endif %}
+ 
+{% endspaceless %}

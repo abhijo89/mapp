@@ -1,0 +1,69 @@
+{% extends "main/index.html" %}
+{% load digg_paginator %}
+{% block extra-head %}
+	{{ block.super }}
+	<style>
+		.search_box{
+			padding-right: 0; 
+			padding-left: 0; 
+			float: left;
+			margin-left: 20px; 
+			margin-top: 20px;
+		}
+		.category{
+			display: block;
+			float: left;
+			margin: 5px;
+			padding: 5px;
+		}
+		.digg_paginator {
+			
+			}
+		.item_box{
+			display: block;
+			float: left;
+			margin: 5px;
+			padding: 5px;
+			width:95%;
+			height: 200px !importent;
+			
+			}
+		.title {
+			margin-left: 10px; 
+			margin-top: 10px; 
+			margin-right: 10px;
+		}
+		.bio_info{
+			
+			
+			margin-left: 10px; 
+			margin-right: 10px;
+			
+		}
+		.sub_title{
+			margin-left: 10px; 
+			margin-right: 10px;		
+		}
+	</style>
+{% endblock %}
+{% block main-container %}
+<h1>Search Result</h1>
+<div class="clear"></div>
+{% digg_paginator %}<br><br>
+{% if categorys %}
+	{%for item in categorys%}
+		<div class="item_box ">
+			<div class="title"><a  href="{% url movie item.id %}">{{ item.title|truncatewords:5|title }}</a></div>
+			<div class="b_info">
+				<div class="sub_title">Rating: {{item.rating}}</div>
+				<div class="sub_title">Vote: {{item.votes}}</div>
+				<div class="sub_title">Year: {{item.year}}</div>
+				<div class="sub_title">Aspect Ratio: {{item.aspect_ration}}</div>
+				<div class="sub_title">Out line: {{item.plot_outline}}</div>
+			</div>
+			
+			
+		</div>
+	{%endfor%}
+{%endif%}
+{% endblock %}

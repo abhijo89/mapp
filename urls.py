@@ -31,6 +31,7 @@ urlpatterns += patterns('front_end',
       #Search
       url(r'^home/search/$','views.search_index',name='search_index'),
       url(r'^search/(?P<category>.*)/$','views.search',name='search'),
+      url(r'^search/(?P<category>.*)/(?P<category_item>.*).dhtml$','views.search_movie_by_category',name='search_movie'),
       
 
 )
