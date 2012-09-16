@@ -223,9 +223,9 @@ def search_movie_by_category(request,category,category_item):
 		category_item = Languages.objects.get(name=category_item)
 		movie_list = category_item.Languages_M2M_Movie.all()
 	elif category == 'Country':
-		category_item = Countries.objects.all()
+		movie_list = Countries.objects.all()
 	elif category == 'Genres':
-		category_item = Genre.objects.all()
+		movie_list = Genre.objects.all()
 	paginator = Paginator(movie_list, paginator_total_result_count) 
 	page = int(request.GET.get('page', 1))
 
