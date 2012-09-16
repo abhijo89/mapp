@@ -44,8 +44,8 @@ def home(request,template='main/index.html'):
   if request.user.is_anonymous():
 	return HttpResponseRedirect(reverse('index'))
   today = datetime.date.today()
-  boxoffice_movies =Boxoffice.objects.order_by('-imdbid__rating')[:2]
-  intheater_movies =Intheaters.objects.order_by('-imdbid__rating')[:2]
+  boxoffice_movies =Boxoffice.objects.order_by('-imdbid__rating')[:7]
+  intheater_movies =Intheaters.objects.order_by('-imdbid__rating')[:7]
   
   
   context={
