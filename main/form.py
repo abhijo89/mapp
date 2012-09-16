@@ -76,4 +76,10 @@ class RegistrationForm(forms.Form):
                 raise forms.ValidationError(_(u'You must type the same password each time'))
         return self.cleaned_data
 
+# A simple contact form with four fields.
+class ContactForm(forms.Form):
+    name = forms.CharField()
+    email = forms.EmailField()
+    topic = forms.CharField()
+    message = forms.CharField(widget=Textarea())
 
