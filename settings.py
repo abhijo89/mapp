@@ -90,6 +90,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'mapp.tracking.middleware.VisitorTrackingMiddleware',
+    'mapp.tracking.middleware.BannedIPMiddleware',
+    'mapp.tracking.middleware.VisitorCleanUpMiddleware',
 )
 
 ROOT_URLCONF = 'mapp.urls'
@@ -117,7 +120,7 @@ INSTALLED_APPS = (
     'mapp.front_end',
     'mapp.metatag',
     'mapp.recaptcha_works',
-    #'mapp.tracking',
+    'mapp.tracking',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -152,3 +155,5 @@ LOGGING = {
         },
     }
 }
+
+AUTH_PROFILE_MODULE = 'front_end.UserProfile'
