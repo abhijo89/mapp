@@ -129,6 +129,8 @@ def friend_accept(request, user_id):
 	return HttpResponse(simplejson.dumps(to_return), mimetype='application/json')
 
 def edit_profile_page(request):
+	if user.is_anonymous():
+			return HttpResponseRedirect(reverse('index'))
 	current_password = request.POST.get('current_password', '')
 	new_password = request.POST.get('new_password', '')
 	confirm_password = request.POST.get('confirm_password', '')
@@ -211,6 +213,8 @@ def delete_pic(request):
 
 #SEARCH 
 def search_index(request):
+	if user.is_anonymous():
+			return HttpResponseRedirect(reverse('index'))
 	context = {}
 	category ={}
 	category ['Country'] = 0
@@ -220,6 +224,8 @@ def search_index(request):
 	return render_to_response('main/search_index.html', context, context_instance = RequestContext(request))
 	
 def search(request,category):
+	if user.is_anonymous():
+			return HttpResponseRedirect(reverse('index'))
 	context ={}
 	category = category.title()
 
@@ -235,6 +241,8 @@ def search(request,category):
 	return render_to_response('main/search_category.html', context, context_instance = RequestContext(request))
 	
 def search_movie_by_category(request,category,category_item):
+	if user.is_anonymous():
+			return HttpResponseRedirect(reverse('index'))
 	
 	context = {}
 	if category == 'Language':	
