@@ -66,8 +66,7 @@ def contactview(request):
 		else:
 			return render_to_response('main/contacts.html', {'form': ContactForm()},context_instance = RequestContext(request))
 	
-		return render_to_response('main/contacts.html', {'form': ContactForm()},
-			context_instance = RequestContext(request))
+		return render_to_response('main/thankyou.html', context_instance = RequestContext(request))
 def thankyou(request):
 		return render_to_response('main/thankyou.html')
 		
