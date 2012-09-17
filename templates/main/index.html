@@ -37,7 +37,7 @@
      {% for intheater_movie in intheater_movies %}
 	
 	  <tr>
-	    <td><a class='x-small' href="">{{ intheater_movie.imdbid.title|truncatewords:5|title }}</a></td>
+	    <td><a class='x-small' href="{% url movie intheater_movie.imdbid.id %}">{{ intheater_movie.imdbid.title|truncatewords:5|title }}</a></td>
 	    <td>{{ intheater_movie.imdbid.rating }}</td>
 	  </tr>
      {% endfor %}
@@ -90,7 +90,7 @@
 		 {% for upcomming_movie in upcomming_movies %}
 		
 		  <tr>
-			<td><a class='x-small' href="">{{ upcomming_movie.imdbid.title|truncatewords:5|title }}</a></td>
+			<td><a class='x-small' href="{% url movie upcomming_movie.imdbid.id %}">{{ upcomming_movie.imdbid.title|truncatewords:5|title }}</a></td>
 			<td>{{ upcomming_movie.imdbid.rating }}</td>
 		  </tr>
 		 {% endfor %}
@@ -109,7 +109,7 @@
 		 {% for opening_movie in opening_movies %}
 		
 		  <tr>
-			<td><a class='x-small' href="">{{ opening_movie.imdbid.title|truncatewords:5|title }}</a></td>
+			<td><a class='x-small' href="{% url movie opening_movie.imdbid.id %}">{{ opening_movie.imdbid.title|truncatewords:5|title }}</a></td>
 			<td>{{ opening_movie.imdbid.rating }}</td>
 		  </tr>
 		 {% endfor %}
