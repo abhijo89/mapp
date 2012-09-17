@@ -17,6 +17,7 @@ from mapp.recaptcha_works.decorators import fix_recaptcha_remote_ip
 @fix_recaptcha_remote_ip
 def index(request,template=''):
   error=''
+  return HttpResponseRedirect(reverse('home'))
   if request.user.is_anonymous():
       if request.POST:
         form = LoginForm(data=request.POST)
@@ -41,8 +42,8 @@ def index(request,template=''):
   return render_to_response('main/startup.html', context, context_instance = RequestContext(request))
   
 def home(request,template='main/index.html'):
-	if request.user.is_anonymous():
-		return HttpResponseRedirect(reverse('index'))
+	#if request.user.is_anonymous():
+		#return HttpResponseRedirect(reverse('index'))
 	today = datetime.date.today()
 	upcomming_movies =Upcoming.objects.order_by('-imdbid__rating')[:10]
 	opening_movies =Opening.objects.order_by('-imdbid__rating')[:10]
@@ -54,8 +55,8 @@ def logout_view(request):
   return HttpResponseRedirect(reverse('index'))
 
 def movie_info(request , movie_id):
-  if request.user.is_anonymous():
-	return HttpResponseRedirect(reverse('index'))
+  #if request.user.is_anonymous():
+	#return HttpResponseRedirect(reverse('index'))
   movie=Movie.objects.get(id=movie_id)
   context={'movie':movie}
   return render_to_response('main/movie_info.html', context, context_instance = RequestContext(request))
