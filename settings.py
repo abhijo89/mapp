@@ -1,7 +1,7 @@
 # Django settings for mapp project.
 import os
 from local_settings import *
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
