@@ -52,10 +52,10 @@
             .ok-button{ background: url({{ MEDIA_URL }}images/main/buttons/orangeButton_OK.png) 0 0 no-repeat transparent;}
             .cancel-button{ background: url({{ MEDIA_URL }}images/main/buttons/orangeButton_Cancel.png) 0 0 no-repeat transparent;}
         </style>
-	{% if metatag.google_pagetrack_customvar %}
+	
         <script type="text/javascript">
             var _gaq = _gaq || [];
-            _gaq.push(['_setAccount', '{{metatag.google_pagetrack_customvar}}']);
+            _gaq.push(['_setAccount', '{% if metatag.google_pagetrack_customvar %}{{metatag.google_pagetrack_customvar}} {%else%} UA-26444739-1 {%endif%}']);
             _gaq.push(['_trackPageview']);
 
             (function () {
@@ -67,7 +67,6 @@
                 s.parentNode.insertBefore(ga, s);
             })();
         </script>
-	{% endif %}
         <script type="text/javascript">
             var css_file = "";
             if ($.browser.msie) {
