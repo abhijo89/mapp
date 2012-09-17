@@ -96,8 +96,8 @@ def register(request,to_return=''):
 	
 def myaccount(request,user_id=None):
 	user = request.user
-	if user.is_anonymous():
-			return HttpResponseRedirect(reverse('index'))
+	#if user.is_anonymous():
+			#return HttpResponseRedirect(reverse('index'))
 	profile=user.get_profile()
 	city = False
 	if user_id == None:
@@ -215,8 +215,8 @@ def delete_pic(request):
 #SEARCH 
 def search_index(request):
 	user = request.user
-	if user.is_anonymous():
-			return HttpResponseRedirect(reverse('index'))
+	#if user.is_anonymous():
+			#return HttpResponseRedirect(reverse('index'))
 	context = {}
 	category ={}
 	category ['Country'] = 0
@@ -227,8 +227,8 @@ def search_index(request):
 	
 def search(request,category):
 	user = request.user
-	if user.is_anonymous():
-			return HttpResponseRedirect(reverse('index'))
+	#if user.is_anonymous():
+			#return HttpResponseRedirect(reverse('index'))
 	context ={}
 	category = category.title()
 
@@ -245,8 +245,8 @@ def search(request,category):
 	
 def search_movie_by_category(request,category,category_item):
 	user = request.user
-	if user.is_anonymous():
-			return HttpResponseRedirect(reverse('index'))
+	#if user.is_anonymous():
+			#return HttpResponseRedirect(reverse('index'))
 	
 	context = {}
 	if category == 'Language':	
