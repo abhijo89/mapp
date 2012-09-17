@@ -44,6 +44,8 @@ def home(request,template='main/index.html'):
 	if request.user.is_anonymous():
 		return HttpResponseRedirect(reverse('index'))
 	today = datetime.date.today()
+	upcomming_movies =Upcoming.objects.order_by('-imdbid__rating')[:7]
+	opening_movies =Opening.objects.order_by('-imdbid__rating')[:7]
 	context = {}
 	return render_to_response('main/index.html', context, context_instance = RequestContext(request))
 

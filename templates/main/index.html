@@ -81,13 +81,39 @@
     <div class="clear"></div>
     <div class="aux-content-widget-2 submain">
      {% block sbmain-1%}
-     1
+     <h2> Top Upcomming Movie </h2>
+		<table width='150px'>
+		  <tr>
+		<td>Name</td>
+		<td>Rating</td>
+		  <tr>
+		 {% for upcomming_movie in upcomming_movies %}
+		
+		  <tr>
+			<td><a class='x-small' href="">{{ upcomming_movie.imdbid.title|truncatewords:5|title }}</a></td>
+			<td>{{ upcomming_movie.imdbid.rating }}</td>
+		  </tr>
+		 {% endfor %}
+		</table>
      {% endblock %}
     </div>
     <div class="clear"></div>
     <div class="aux-content-widget-2 submain">
      {% block sbmain-2%}
-     2
+     <h2> Top Opening Movie </h2>
+		<table width='150px'>
+		  <tr>
+		<td>Name</td>
+		<td>Rating</td>
+		  <tr>
+		 {% for opening_movie in opening_movies %}
+		
+		  <tr>
+			<td><a class='x-small' href="">{{ opening_movie.imdbid.title|truncatewords:5|title }}</a></td>
+			<td>{{ opening_movie.imdbid.rating }}</td>
+		  </tr>
+		 {% endfor %}
+		</table>
      {% endblock %}
     </div>
     <div class="clear"></div>
