@@ -50,6 +50,9 @@
 {% block main-container %}
 <h1>Search Result</h1>
 <div class="clear"></div>
+{% if limit %}
+	<p> Display only 1000 record </p>
+{% endif %}
 {% digg_paginator %}<br><br>
 {% if categorys %}
 	{%for item in categorys%}
