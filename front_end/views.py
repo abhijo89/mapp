@@ -275,7 +275,7 @@ def search_globel(request):
 	context = {}
 	query=request.POST.get('q', '')
 	if query:
-		movie = Movie.objects.filter(title__contains=query)[:1000]
+		movie = Movie.objects.filter(title__iexact=query)[:1000]
 		if not movie :
 			movie = get_movie(query)
 		paginator = Paginator(movie, paginator_total_result_count) 
@@ -302,7 +302,7 @@ def get_movie(title):
 	for move_obj in movie_obj_list :
 		
 		save_movie_to_db(move_obj,0,move_obj.data['title'])
-	movie = Movie.objects.filter(title__contains=title)[:1000]
+	movie = Movie.objects.filter(title__iexact=title)[:1000]
 	return movie
 	
 def save_movie_to_db (the_matrix,sucess_factor,movie_name):
