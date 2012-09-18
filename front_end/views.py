@@ -277,7 +277,8 @@ def search_globel(request):
 	if query:
 		movie = Movie.objects.filter(title__iexact=query)[:1000]
 		if not movie :
-			movie = get_movie(query)
+			#movie = get_movie(query)
+			pass
 		paginator = Paginator(movie, paginator_total_result_count) 
 		page = int(request.GET.get('page', 1))
 
