@@ -51,6 +51,19 @@
             
             .ok-button{ background: url({{ MEDIA_URL }}images/main/buttons/orangeButton_OK.png) 0 0 no-repeat transparent;}
             .cancel-button{ background: url({{ MEDIA_URL }}images/main/buttons/orangeButton_Cancel.png) 0 0 no-repeat transparent;}
+            .search_box{padding: 6px 3px 5px 6px;}
+			.search_btn  {
+				background: url("{{ MEDIA_URL }}images/main/small-orange-button.png") 0 0 no-repeat transparent;
+				display: block;
+				height: 34px;
+				text-align: center;
+				width: 97px;
+				padding-top: 5px;
+				float:left
+				}
+			  
+			   a:hover {text-decoration: none; }
+			  .search_text_box {float: left; margin: 5px 10px;}
         </style>
 	
         <script type="text/javascript">
@@ -159,7 +172,15 @@
                       <a class="my_account_link" href="{% url myaccount %}" alt="My Account"></a>
                       <a class="logout_link" href="{% url logout %}" alt="Logout"></a>
                     {% endif %}
-                    
+                    <div>Search By Move Name 
+					<form action="{% url search_globel %}" method="post">{% csrf_token %}
+						<div class="search_box">
+							<input type="text" name="q" class="search_text_box">
+							<input type="submit" class="search_btn" value=" Search " />
+							
+						</div>
+					</form>
+					</div>
                 </div>
                 <div class='clear'></div>
                 <div id="menu">
