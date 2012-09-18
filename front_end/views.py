@@ -275,7 +275,7 @@ def search_globel(request):
 	context = {}
 	query=request.POST.get('q', '')
 	if query:
-		movie = Movie.objects.filter(title__iexact=query)[:1000]
+		movie = Movie.objects.filter(title__contains=query)[:1000]
 		if not movie :
 			#movie = get_movie(query)
 			pass
@@ -303,7 +303,7 @@ def get_movie(title):
 	for move_obj in movie_obj_list :
 		
 		save_movie_to_db(move_obj,0,move_obj.data['title'])
-	movie = Movie.objects.filter(title__iexact=title)[:1000]
+	movie = Movie.objects.filter(title__contains=title)[:1000]
 	return movie
 	
 def save_movie_to_db (the_matrix,sucess_factor,movie_name):
@@ -314,7 +314,6 @@ def save_movie_to_db (the_matrix,sucess_factor,movie_name):
 	try :
 		animation_department = the_matrix.data['animation department']
 		for person in animation_department :
-
 			tblperson = fnPerson(person, sucess_factor)
 			tblanimation_department, c = Animation_department.objects.get_or_create(name = tblperson)
 			tblmovie.animation_department.add(tblanimation_department)
@@ -327,7 +326,6 @@ def save_movie_to_db (the_matrix,sucess_factor,movie_name):
 		for person in art_department :
 
 			tblperson = fnPerson(person, sucess_factor)
-
 			tblart_department, c = Art_department.objects.get_or_create(name = tblperson)
 			tblmovie.art_department.add(tblart_department)
 	except Exception as e:
@@ -350,7 +348,6 @@ def save_movie_to_db (the_matrix,sucess_factor,movie_name):
 		for person in assistant_director :
 
 			tblperson = fnPerson(person, sucess_factor)
-
 			tblassistant_director, c = Assistant_director.objects.get_or_create(name = tblperson)
 			tblmovie.assistant_director.add(tblassistant_director)
 	except Exception as e:
