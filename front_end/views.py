@@ -273,7 +273,9 @@ def search_movie_by_category(request,category,category_item):
 def search_globel(request):
 	context = {}
 	query=request.POST.get('q', '')
-	if query:
+	if query or request.session.get('query'):
+		if query:
+			request.session['query'] = query
 		movie = Movie.objects.filter(title__icontains=query)[:1000]
 		if not movie :
 			movie = save_move_to_db(query)
