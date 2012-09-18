@@ -278,7 +278,6 @@ def search_globel(request):
 		movie = Movie.objects.filter(title__contains=query)[:1000]
 		if not movie :
 			movie = get_movie(query)
-			print "===============",movie[0].id
 		paginator = Paginator(movie, paginator_total_result_count) 
 		page = int(request.GET.get('page', 1))
 
@@ -303,11 +302,11 @@ def get_movie(title):
 	for move_obj in movie_obj_list :
 		
 		save_movie_to_db(move_obj,0,move_obj.data['title'])
-		print move_obj.data['title']
 	movie = Movie.objects.filter(title__contains=title)[:1000]
 	return movie
 	
 def save_movie_to_db (the_matrix,sucess_factor,movie_name):
+	
 	tblmovie = fnMovie(the_matrix,sucess_factor,movie_name)
 	if not tblmovie:
 		return 
@@ -772,7 +771,7 @@ def save_movie_to_db (the_matrix,sucess_factor,movie_name):
 		 
 		sucess_factor = sucess_factor + 1
 		pass
-	
+	tblmovie.save()
 	return True
 	
 def fnPerson(person, sucess_factor):
@@ -807,15 +806,10 @@ def fnCharactor(person):
 def fnMovie (the_matrix,sucess_factor,title_from_url):
 	try :
 		title=the_matrix.data['title']
-		print ">>>>>>>>>>>>>",title
 		if len(title) > 99 :
 			if len(title_from_url) < 100:
 				title = title_from_url
 			else:
-				msg = "Move '%s' Not saved in the DB "%(title_from_url)
-				main_fun('8884256828',msg)
-				main_fun('7204785003',msg)
-				main_fun('9526526637',msg)
 				return False
 
 	except KeyError as e:
@@ -889,12 +883,8 @@ def fnMovie (the_matrix,sucess_factor,title_from_url):
 
 		sucess_factor = sucess_factor + 1
 		pass
-	if title == '':
-		exit(0)
 	tblmovie, created = Movie.objects.get_or_create(title = title, votes = votes, year = year, aspect_ration = aspect_ratio, mpaa = mpaa,
 	rating = rating, imdbid = imdbid, top_250_rank = top_250_rank, cover_url = cover_url, plot_outline = plot_outline, summary = summary)
-	if created:
-		print "Movie Creatd "
 	return tblmovie
 
 
