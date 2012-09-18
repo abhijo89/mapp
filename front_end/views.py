@@ -275,7 +275,7 @@ def search_globel(request):
 	context = {}
 	query=request.POST.get('q', '')
 	if query:
-		movie = Movie.objects.filter(title=query)
+		movie = Movie.objects.filter(title__contains=query)[:1000]
 		paginator = Paginator(movie, paginator_total_result_count) 
 		page = int(request.GET.get('page', 1))
 
@@ -286,6 +286,7 @@ def search_globel(request):
 			results_pages = paginator.page(paginator.num_pages)	
 	else :
 		return HttpResponseRedirect(reverse('index'))
+	context['limit'] = 1
 	context['categorys'] = results_pages.object_list
 	context['category_name'] = 'Globel'
 	context =  dict(context, **extra_context(paginator, results_pages))
