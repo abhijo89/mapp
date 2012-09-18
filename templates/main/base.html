@@ -7,7 +7,7 @@
     </div>
     
     <head>{% load metatag_tags %} {% metatag_populate %}
-        <title>{% if metatag.title %}{{ metatag.title }}{%else%}{% block title %}{% endblock %}{% endif %}</title>
+        <title>{% if metatag.title %}{{ metatag.title }}{%else%}{% block title %} Welcome MuviDB{% endblock %}{% endif %}</title>
         <meta name="description" content="{{ metatag.description }} {% block description %}{% endblock %}"/>
         <link rel="icon" type="image/ico" href="{% url index %}favicon.ico" />
         <link rel="icon" href="{{ MEDIA_URL }}images/favicon.ico" type="image/x-icon">
@@ -159,6 +159,7 @@
                       <a class="my_account_link" href="{% url myaccount %}" alt="My Account"></a>
                       <a class="logout_link" href="{% url logout %}" alt="Logout"></a>
                     {% endif %}
+                    
                 </div>
                 <div class='clear'></div>
                 <div id="menu">
