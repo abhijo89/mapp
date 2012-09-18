@@ -271,4 +271,22 @@ def search_movie_by_category(request,category,category_item):
 	context['category_name'] = category
 	context =  dict(context, **extra_context(paginator, results_pages))
 	return render_to_response('main/search_movie_list.html', context, context_instance = RequestContext(request))
-	
+def search_globel(request):
+	context = {}
+	query=request.POST.get('q', '')
+	if query:
+		movie = Movie.objects.filter(title=query)
+		paginator = Paginator(movie, paginator_total_result_count) 
+		page = int(request.GET.get('page', 1))
+
+		try:
+			results_pages = paginator.page(page)
+		except : # Standard Exception 
+			# If page is out of range (e.g. 9999) or No page found, deliver last page of results.
+			results_pages = paginator.page(paginator.num_pages)	
+	else :
+		return HttpResponseRedirect(reverse('index'))
+	context['categorys'] = results_pages.object_list
+	context['category_name'] = 'Globel'
+	context =  dict(context, **extra_context(paginator, results_pages))
+	return render_to_response('main/search_movie_list.html', context, context_instance = RequestContext(request))
