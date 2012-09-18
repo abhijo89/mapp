@@ -274,10 +274,10 @@ def search_globel(request):
 	context = {}
 	query=request.POST.get('q', '')
 	if query:
-		movie = Movie.objects.filter(title__contains=query)[:1000]
+		movie = Movie.objects.filter(title__icontains=query)[:1000]
 		if not movie :
 			movie = save_move_to_db(query)
-			movie = Movie.objects.filter(title__contains=query)[:1000]
+			movie = Movie.objects.filter(title__icontains=query)[:1000]
 		paginator = Paginator(movie, paginator_total_result_count) 
 		page = int(request.GET.get('page', 1))
 
