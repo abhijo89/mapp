@@ -61,9 +61,9 @@ def movie_info(request , movie_id):
   url = movie.cover_url
   try:
 	image = url.split('/')[5]
-	image = "http://wwww.softlinkweb/muvidb/%s"%image
+	image = "http://www.softlinkweb/muvidb/%s"%image
   except:
-	image = "http://wwww.softlinkweb/muvidb/no_image.jpg"
+	image = "http://www.softlinkweb/muvidb/no_image.jpg"
   context={'movie':movie,'image':image}
   return render_to_response('main/movie_info.html', context, context_instance = RequestContext(request))
   
