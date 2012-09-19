@@ -43,6 +43,12 @@ urlpatterns += patterns('front_end',
 
 )
 
+urlpatterns = patterns('',
+    url(r'^admin/password_reset/$', 'django.contrib.auth.views.password_reset', name='password_reset'),
+    (r'^password_reset/done/$', 'django.contrib.auth.views.password_reset_done'),
+    (r'^reset/(?P[0-9A-Za-z]+)-(?P.+)/$', 'django.contrib.auth.views.password_reset_confirm'),
+    (r'^reset/done/$', 'django.contrib.auth.views.password_reset_complete'),
+)
 urlpatterns += patterns('',
         (r'^media/(?P<path>.*)$', 'django.views.static.serve',
          {'document_root': settings.MEDIA_ROOT}),
