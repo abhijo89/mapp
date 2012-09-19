@@ -57,13 +57,14 @@ def logout_view(request):
 def movie_info(request , movie_id):
   #if request.user.is_anonymous():
 	#return HttpResponseRedirect(reverse('index'))
+	#http://www.softlinkweb.com/muvidb/MV5BMTAxMDAxODg5ODReQTJeQWpwZ15BbWU3MDI5ODYxODI@._V1._SX94_SY140_.jpg
   movie=Movie.objects.get(id=movie_id)
   url = movie.cover_url
   try:
 	image = url.split('/')[5]
-	image = "http://www.softlinkweb/muvidb/%s"%image
+	image = "http://www.softlinkweb.com/muvidb/%s"%image
   except:
-	image = "http://www.softlinkweb/muvidb/no_image.jpg"
+	image = "http://www.softlinkweb.com/muvidb/no_image.jpg"
   context={'movie':movie,'image':image}
   return render_to_response('main/movie_info.html', context, context_instance = RequestContext(request))
   
