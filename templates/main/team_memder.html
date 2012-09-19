@@ -1,0 +1,41 @@
+{% extends "main/index.html" %}
+{% block description %}{{ person.about}} {% endblock %}
+{% block extra-head %}
+
+{{ block.super }}
+<style>
+	.container {margin-right: 20px; width: 800px; margin-top: 6px;padding-top: 10px;}
+	.movie_info_content{width:774px;float: none;}
+	.content-widget {width:200px; float: none;}
+	.movie_photo{display:block; width: 200px; height: 230px;margin-left: 0px; margin-right: 20px; margin-bottom: 20px;float: left;padding: 10px;}
+	.movie_basic_info {float:left;min-height: 250px; width: 540px;}
+	.label-div {width: 130px; display:block; float: left;}
+	.td-div{min-width: 100px; }
+	.cast_photo{display:block; width: 100px; height: 100px;margin-left: 0px; margin-right: 5px; float: left;}
+	.profile_image {width: 190px; height: 220px;}
+	.about_note{margin-left: 50px; }
+	.aux-content-widget-2{margin-right: 10px;}
+</style>
+{% endblock %}
+{% block title %} MuviDB | About-{{person.name|title}}{% endblock %}
+
+{% block content %} 
+<div class="aux-content-widget-2 ">
+	<h1>{{person.name|title}}</h1>
+	<div class="clear"></div>
+	<div class='movie_photo box '>
+		<img src="{{MEDIA_URL}}{{person.image}}" class="profile_image">
+	</div>
+	<div class='movie_basic_info'>
+		<label class='label-div'>E-mail</label> : {{person.email}} <br>
+		<label class='label-div'>Phone</label> : {{person.phone}} <br>
+		<label class='label-div'>Note</label> : {{person.note}} <br>
+		<label class='label-div'>Member Since </label> : {{person.publish_date}}  <br>
+		<label class='label-div'>About {{person.name|title}}</label> <br>
+		<div class="about_note">
+			{{person.about}}
+		</div>
+	</div>
+	
+</div>
+{% endblock %}

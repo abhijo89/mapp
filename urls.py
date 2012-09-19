@@ -38,7 +38,8 @@ urlpatterns += patterns('front_end',
       #Contact Us
       url(r'^home/contact/thankyou/', 'views.thankyou',name='search_index'),
       url(r'^home/contact-us/', 'views.contactview',name='contact-us'),
-      
+      #Team MEmbers 
+      url(r'^team_memder_(?P<member_id>.*).dhtml$', 'views.team_memders',name='team_memders'),
 
 )
 

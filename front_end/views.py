@@ -270,6 +270,22 @@ def search_movie_by_category(request,category,category_item):
 	context['category_name'] = category
 	context =  dict(context, **extra_context(paginator, results_pages))
 	return render_to_response('main/search_movie_list.html', context, context_instance = RequestContext(request))
+	
+	
+def team_memders(request,member_id):
+	
+	person = Team_Members.objects.get(id=member_id)
+	context = {'person':person}
+	
+	return render_to_response('main/team_memder.html', context, context_instance = RequestContext(request))
+	
+	
+	
+	
+	
+	
+	
+	
 def search_globel(request):
 	context = {}
 	query=request.POST.get('q', '')
