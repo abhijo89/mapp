@@ -20,30 +20,14 @@
 {% block content %} 
 
 {# MAIN BLOCK TO SHOW ALL INFORMARION #}
-<div class="sidebar left">
-  {% block sidebar-left %}
-		<div class="aux-content-widget-2 content-widget">
-			{# COUNT INFORMATION and RELATED movies#}
-			<div>
-					{# Basic information ablot movie such as name,rating,year, mapp,total vote,totalreview,total vitited users ect#}
-			</div>
-			<div>
-					{# Person information Cast list , diractor, writer etc #}
-			</div>
-			<div>
-					{# Person information Cast list , diractor, writer etc #}
-			</div>
-		</div>
-		
-  {% endblock %}
-</div>
+
 <div class="container right">
 			<div class="aux-content-widget-2 movie_info_content">
 				{# Movie info #}
 				<div>
 						{# Basic information ablot movie such as name,rating,year, mapp,total vote,totalreview,total vitited users ect#}
 						<div class='movie_photo'>
-							
+							<img src="{{ movie.cover_url }}">
 						</div>
 						<div class='movie_basic_info'>
 								<h2>{{ movie.title|title }}</h2>
