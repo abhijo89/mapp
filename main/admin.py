@@ -73,7 +73,7 @@ class PhotoAdmin(admin.ModelAdmin):
 	def personID(self,obj):
 		return obj.Photo_M2M_Person.all()[0].personID
 	def image(self,obj):
-		return "<img src=\"/media/person/"+obj.url+"\">"
+		return "<img src=\"http://www.softlinkweb.com/muvidb/cast/"+obj.url+"\">"
 	image.allow_tags = True
 
 	list_display = ('image','url','person','personID')
