@@ -13,22 +13,27 @@
 			<div id="c_form">
 				<div class="clear"></div>
 				<form name="theform" action="." method="post" id="theform">{% csrf_token %} 
-					<br />
-
-						<label id="id_name">Name:</label>
-						<input class="textbox" type="text" name="name" value="" id="name" /><br />
-						<label id="id_email">Email:</label>
-						<input class="textbox" type="text" name="email" value="" id="Email" /><br />
-					
-					
-						<label id="id_message">Message:</label>
-						<textarea class="textbox" name="message" rows="8" cols="37"></textarea><br />
-
-					
-					<div id="submit">
-						<input type="image" src="http://path/to/submitbutton.png" onclick="YY_checkform('theform','name','#q','0','Field \'name\' is empty.','Email','#S','2','Field \'Email\' appears not to be valid.','message','2','1','Field \'message\' is empty.');return document.MM_returnValue" />
-					</div><!-- end submit -->
-					<input class="hidden" type="hidden" name="topic" value="Home : Contact Form Submission" id="subject" />
+					<table border=0>
+					<tr>
+						<td><label id="id_name">Name:</label></td>
+						<td><input class="textbox" type="text" name="name" value="" id="name" /></td>
+					</tr>
+					<tr>
+						<td><label id="id_email">Email:</label></td>
+						<td><input class="textbox" type="text" name="email" value="" id="Email" /></td>
+					</tr>
+					<tr>
+						<td><label id="id_message">Message:</label></td>
+						<td><textarea class="textbox" name="message" rows="8" cols="37"></textarea></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><div id="submit">
+					<input type="image" class="search_btn" value="Submit" onclick="YY_checkform('theform','name','#q','0','Field \'name\' is empty.','Email','#S','2','Field \'Email\' appears not to be valid.','message','2','1','Field \'message\' is empty.');return document.MM_returnValue" />
+				</div><!-- end submit -->
+				<input class="hidden" type="hidden" name="topic" value="Home : Contact Form Submission" id="subject" /></td>
+					</tr>
+				</table>
 				</form>
 
 			</div><!-- end c_form -->
