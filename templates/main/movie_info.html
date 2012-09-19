@@ -17,16 +17,15 @@
 	</style>
 	<script type="text/javascript">
 			$(document).ready(function(){
-					$.ajaxSetup({
-						'beforeSend': function(xhr) {xhr.setRequestHeader("Referer","http://www.imdb.com/")}
-					});
+					
 					$.ajax({
 						
 						url:"{{ movie.cover_url }}",
 						data:"",
 						type: 'GET',
-						async: false,
+						async: true,
 						headers: {"Host": "i.media-imdb.com","Origin":"http://www.imdb.com","Accept":"image/png,image/*;q=0.8,*/*;q=0.5",},
+						beforeSend: function(xhr) {xhr.setRequestHeader("Referer","http://www.imdb.com/")},
 						success: function(data){
 							$('.movie_photo').html(data);
 							}
