@@ -15,24 +15,7 @@
 		.td-div{min-width: 100px; }
 		.cast_photo{display:block; width: 100px; height: 100px;margin-left: 0px; margin-right: 5px; float: left;}
 	</style>
-	<script type="text/javascript">
-			$(document).ready(function(){
-					
-					$.ajax({
-						
-						url:"{{ movie.cover_url }}",
-						data:"",
-						type: 'GET',
-						async: true,
-						headers: {"Host": "i.media-imdb.com","Origin":"http://www.imdb.com","Accept":"image/png,image/*;q=0.8,*/*;q=0.5",},
-						beforeSend: function(xhr) {xhr.setRequestHeader("Referer","http://www.imdb.com/")},
-						success: function(data){
-							$('.movie_photo').html(data);
-							}
-					});
-					
-			});
-	</script>			
+			
 {% endblock %}
 
 {% block content %} 
