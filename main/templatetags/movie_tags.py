@@ -21,3 +21,11 @@ def get_cast_photo(obj):
 		photo_url='no_photo.jpg'
 	return photo_url
 	
+@register.filter
+def split_url(obj):
+	try:
+		url = obj.cover_url.split('/')[5]
+	except:
+		url = "no_image.jpg"
+		
+	return url

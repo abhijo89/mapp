@@ -1,5 +1,6 @@
 {% extends "main/index.html" %}
 {% load digg_paginator %}
+{% load movie_tags %}
 {% block title %} MuviDB | Search Result {% endblock %}
 {% block extra-head %}
 	{{ block.super }}
@@ -58,6 +59,9 @@
 	{%for item in categorys%}
 		<div class="item_box ">
 			<div class="title"><a  href="{% url movie item.id %}">{{ item.title|truncatewords:5|title }}</a></div>
+			<div style="float:left;margin: 10px;">
+				<img src="http://www.softlinkweb.com/muvidb/{{item|split_url}}">
+			</div>
 			<div class="b_info">
 				<div class="sub_title">Rating: {{item.rating}}</div>
 				<div class="sub_title">Vote: {{item.votes}}</div>
