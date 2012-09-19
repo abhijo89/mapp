@@ -58,7 +58,13 @@ def movie_info(request , movie_id):
   #if request.user.is_anonymous():
 	#return HttpResponseRedirect(reverse('index'))
   movie=Movie.objects.get(id=movie_id)
-  context={'movie':movie}
+  url = movie.cover_url
+  try:
+	image = url.split('/')[5]
+	image = "http://wwww.softlinkweb/muvidb/%s"%image
+  except:
+	image = "http://wwww.softlinkweb/muvidb/no_image.jpg"
+  context={'movie':movie,'image':image}
   return render_to_response('main/movie_info.html', context, context_instance = RequestContext(request))
   
 
