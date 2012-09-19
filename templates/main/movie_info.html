@@ -17,6 +17,9 @@
 	</style>
 	<script type="text/javascript">
 			$(document).ready(function(){
+					$.ajaxSetup({
+						'beforeSend': function(xhr) {xhr.setRequestHeader("Referer","http://www.imdb.com/")}
+					});
 					$.ajax({
 						
 						url:"{{ movie.cover_url }}",
@@ -26,9 +29,9 @@
 						headers: {"Host": "i.media-imdb.com","Origin":"http://www.imdb.com","Accept":"image/png,image/*;q=0.8,*/*;q=0.5",},
 						success: function(data){
 							$('.movie_photo').html(data);
-							},
-						beforeSend: function(xhr) {xhr.setRequestHeader("Referer","http://www.imdb.com/")}
+							}
 					});
+					
 			});
 	</script>			
 {% endblock %}
