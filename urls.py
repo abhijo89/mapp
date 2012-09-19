@@ -15,7 +15,7 @@ urlpatterns = patterns('main',
     url(r'^logout/$', 'views.logout_view', name='logout'),
     url(r'^movie/(?P<movie_id>.*)/$','views.movie_info',name='movie'),    
     # =========== ADMIN URL ================================
-    
+    url(r'^admin/', include(admin.site.urls)),
 )
 
 urlpatterns += patterns('front_end',
@@ -42,14 +42,15 @@ urlpatterns += patterns('front_end',
       url(r'^team_memder_(?P<member_id>.*).dhtml$', 'views.team_memders',name='team_memders'),
 
 )
-
+"""
 urlpatterns = patterns('',
     url(r'^admin/password_reset/$', 'django.contrib.auth.views.password_reset', name='password_reset'),
     (r'^password_reset/done/$', 'django.contrib.auth.views.password_reset_done'),
     (r'^reset/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$', 'django.contrib.auth.views.password_reset_confirm'),
     (r'^reset/done/$', 'django.contrib.auth.views.password_reset_complete'),
-    url(r'^admin/', include(admin.site.urls)),
+    
 )
+"""
 urlpatterns += patterns('',
         (r'^media/(?P<path>.*)$', 'django.views.static.serve',
          {'document_root': settings.MEDIA_ROOT}),
