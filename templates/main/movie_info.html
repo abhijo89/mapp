@@ -18,11 +18,11 @@
 	<script type="text/javascript">
 			$(document).ready(function(){
 					$.get('{{ movie.cover_url }}', function(data) {
-						//$('.movie_photo').html(data);
+						$('.movie_photo').html(data);
 						
 					});
 			});
-				
+	</script>			
 {% endblock %}
 
 {% block content %} 
