@@ -154,7 +154,7 @@
     </script>
     {% block extra-head %}{% endblock %}
     </head>
-    
+    {% load tracking_tags %}
     <body>
       <div id="top">
         <div class="">
@@ -240,7 +240,10 @@
                     <li>Blog</li>
                 </ul>
             </div>
-            <div class="footerBottom"></div>
+            <div class="footerBottom">
+            {% visitors_on_site as visitors %}
+            {{ visitors }} active user{{ visitors|pluralize }}
+            </div>
         </div>
     </div>
     <a id="error" href="#errorbox">Error</a>
