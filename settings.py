@@ -157,6 +157,6 @@ LOGGING = {
 }
 
 AUTH_PROFILE_MODULE = 'front_end.UserProfile'
-NO_TRACKING_PREFIXES = ['/admin/','/media/']
+NO_TRACKING_PREFIXES = ['/admin/','/media/','/favicon.ico']
 TRACKING_TIMEOUT = 10
 TRACKING_CLEANUP_TIMEOUT = 24 
