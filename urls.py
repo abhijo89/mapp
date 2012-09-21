@@ -16,6 +16,7 @@ urlpatterns = patterns('main',
     url(r'^movie/(?P<movie_id>.*)/$','views.movie_info',name='movie'),    
     # =========== ADMIN URL ================================
     url(r'^admin/', include(admin.site.urls)),
+    (r'^tracking/', include('tracking.urls')),
 )
 
 urlpatterns += patterns('front_end',
@@ -42,6 +43,8 @@ urlpatterns += patterns('front_end',
       url(r'^team_memder_(?P<member_id>.*).dhtml$', 'views.team_memders',name='team_memders'),
 
 )
+
+
 """
 urlpatterns = patterns('',
     url(r'^admin/password_reset/$', 'django.contrib.auth.views.password_reset', name='password_reset'),
