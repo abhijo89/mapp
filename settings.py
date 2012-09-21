@@ -1,7 +1,7 @@
 # Django settings for mapp project.
 import os
 from local_settings import *
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -158,5 +158,5 @@ LOGGING = {
 
 AUTH_PROFILE_MODULE = 'front_end.UserProfile'
 NO_TRACKING_PREFIXES = ['/admin/','/media/','/favicon.ico']
-TRACKING_TIMEOUT = 10
+TRACKING_TIMEOUT = 1
 TRACKING_CLEANUP_TIMEOUT = 24 
