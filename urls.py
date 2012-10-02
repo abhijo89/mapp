@@ -1,12 +1,12 @@
 from django.conf.urls.defaults import patterns, include, url
 from autoregister import autoregister
 from django.conf import settings
-# Uncomment the next two lines to enable the admin:
 from django.contrib import admin
+from main.sitemap import *
 admin.autodiscover()
 autoregister('main')
 autoregister('front_end')
-autoregister('tracking')
+#autoregister('tracking')
 autoregister('metatag')
 urlpatterns = patterns('main',
     # ============= MAIN URL ===============================
@@ -17,6 +17,7 @@ urlpatterns = patterns('main',
     # =========== ADMIN URL ================================
     url(r'^admin/', include(admin.site.urls)),
     (r'^tracking/', include('tracking.urls')),
+    
 )
 
 urlpatterns += patterns('front_end',
@@ -55,6 +56,7 @@ urlpatterns = patterns('',
 )
 """
 urlpatterns += patterns('',
+		(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
         (r'^media/(?P<path>.*)$', 'django.views.static.serve',
          {'document_root': settings.MEDIA_ROOT}),
     )

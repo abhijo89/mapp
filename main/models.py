@@ -14,7 +14,7 @@ class Movie(models.Model):
 	cover_url=models.CharField(max_length=500,)
 	plot_outline=models.TextField(blank=True, null=True)
 	summary= models.TextField(blank=True, null=True)
-	
+	pub_date = models.DateTimeField(null=True, blank=True,default=datetime.today())
 	#M2M Tables
 	akas_id  		= models.ManyToManyField('Akas', verbose_name=u'Akas ID',related_name="Akas_M2M_Movie")
 	plot=models.ManyToManyField('Plot', verbose_name=u'Plot ID',related_name="Plot_M2M_Movie")

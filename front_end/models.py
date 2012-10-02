@@ -13,7 +13,7 @@ GENTER_CHOICES = (
     ('M', 'Male'),
     ('F', 'Female'),
 )
-current_site = Site.objects.get_current()
+#current_site = Site.objects.get_current()
 class Navigation(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(unique=True)
@@ -32,9 +32,10 @@ class Navigation(models.Model):
 
     def get_absolute_url(self):
 		if 'home' in self.slug:
+			#pass
 			return current_site.domain+'/home/'
-			print current_site.domain
 		return current_site.domain+'/home/%s/' % (self.slug)
+		#return
 
     def save(self, **kwargs):
         dir = self.slug+'/'
