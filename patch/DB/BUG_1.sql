@@ -1,0 +1,2 @@
+USE muvidb_db;
+ALTER TABLE defendant ADD pub_date TIMESTAMP ON UPDATE CURRENT_TIMESTAMP AFTER summary;
