@@ -33,8 +33,8 @@ class Navigation(models.Model):
     def get_absolute_url(self):
 		if 'home' in self.slug:
 			return current_site.domain+'/home/'
-			print current_site.domain
 		return current_site.domain+'/home/%s/' % (self.slug)
+		return
 
     def save(self, **kwargs):
         dir = self.slug+'/'
