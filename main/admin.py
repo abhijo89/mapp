@@ -40,7 +40,7 @@ class MovieAdmin(admin.ModelAdmin):
 	readonly_fields = ('akas_id','plot','certificates','countries','genres','languages','sound_mix','animation_department','art_department','art_direction','assistant_director','camera_and_electrical_department','cast','casting_department','casting_director','cinematographer','color_info','costume_department','costume_designer','director','distributors','editor','languages','make_up','miscellaneous_companies','miscellaneous_crew','music_department','original_music','producer','production_companies','production_design','production_manager',
 	'runtimes','set_decoration','sound_crew','special_effects_companies','special_effects_department','stunt_performer','transportation_department','visual_effects','writer')
 	
-	ordering = ('id',)
+	ordering = ('-id',)
 class Movie_Fetch_StatisticsAdmin(admin.ModelAdmin):
 	list_display = ('id','start_date','end_date','total_count','total_run_count','start_movie_imdbid','end_movie_imdbid')
 	date_hierarchy = 'start_date'

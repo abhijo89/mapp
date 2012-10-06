@@ -5,7 +5,7 @@ class MovieSitemap(Sitemap):
 	    priority = 0.5
 	
 	    def items(self):
-	        return Movie.objects.all()
+	        return Movie.objects.all().order_by('-pub_date')[:20000]
 	
 	    def lastmod(self, obj):
 	        return obj.pub_date
