@@ -49,7 +49,7 @@ class Movie_Fetch_StatisticsAdmin(admin.ModelAdmin):
 	
 
 class PersonAdmin(admin.ModelAdmin):
-	list_display = ('id','name','personID',)
+	list_display = ('id','name','personID','date_of_birth')
 	search_fields = ('name','personID',)
 
 		
