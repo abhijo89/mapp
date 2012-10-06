@@ -2,6 +2,7 @@ from django.contrib.auth.models import User, Group
 from django.db import models
 from datetime import datetime
 
+
 class Movie(models.Model):
 	title= models.CharField(max_length=100,)
 	votes=models.IntegerField(null=True)
@@ -58,8 +59,13 @@ class Movie(models.Model):
 	writer=models.ManyToManyField('Writer', verbose_name=u'Writer ID',related_name="Writer_M2M_Movie",blank=True)
 	Video=models.ManyToManyField('Video', verbose_name=u'Video url',related_name="Video_M2M_Movie",blank=True)
 	release_date = models.ManyToManyField('Release_date', verbose_name=u'Release Date',related_name="Release_date_M2M_Movie",blank=True)
+	
 	def __unicode__(self):
 		return u'%s' % (self.title)
+		
+	def get_absolute_url(self):
+		return str('/movie/%s/'% (self.id)).replace('http://http://','http://')
+		
 	class Meta:
 		verbose_name = 'Movie'
 		verbose_name_plural = 'Movies'
