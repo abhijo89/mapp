@@ -173,7 +173,7 @@
                       <a class="my_account_link" href="{% url myaccount %}" alt="My Account"></a>
                       <a class="logout_link" href="{% url logout %}" alt="Logout"></a>
                     {% endif %}
-                    <div>Search By Move Name 
+                    <div>Search By Movie Name 
 					<form action="{% url search_globel %}" method="post">{% csrf_token %}
 						<div class="search_box">
 							<input type="text" name="q" class="search_text_box">
