@@ -68,4 +68,9 @@ def movie_info(request , movie_id):
   context={'movie':movie,'image':image}
   return render_to_response('main/movie_info.html', context, context_instance = RequestContext(request))
   
-
+def person_info(request,person_id):
+	
+	person = Person.objects.get(id=person_id)
+	context = {'person':person}
+	
+	return render_to_response('main/person_info.html', context, context_instance = RequestContext(request))

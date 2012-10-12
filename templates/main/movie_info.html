@@ -62,7 +62,7 @@
 					{%for cast in movie.cast.all %}
 					<tr>
 						<td><img class='cast_photo' src="http://www.softlinkweb.com/muvidb/cast/{{cast.name|get_cast_photo}}"></td>
-						<td>{{cast.name}}</td>
+						<td><a href={% url person_info cast.name.id %}>{{cast.name}}</a></td>
 						<td>{{cast.charactor|get_cast_charactor_name}}</td>
 					</tr>
 						

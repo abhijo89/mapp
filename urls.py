@@ -13,7 +13,9 @@ urlpatterns = patterns('main',
     url(r'^$', 'views.index', name='index'),
     url(r'^home/$', 'views.home', name='home'),
     url(r'^logout/$', 'views.logout_view', name='logout'),
-    url(r'^movie/(?P<movie_id>.*)/$','views.movie_info',name='movie'),    
+    url(r'^movie/(?P<movie_id>.*)/$','views.movie_info',name='movie'),
+    #===========================================================
+    url(r'^cast_(?P<person_id>.*).dhtml$', 'views.person_info',name='person_info'),    
     # =========== ADMIN URL ================================
     url(r'^admin/', include(admin.site.urls)),
     (r'^tracking/', include('tracking.urls')),
@@ -42,6 +44,7 @@ urlpatterns += patterns('front_end',
       url(r'^home/contact-us/', 'views.contactview',name='contact-us'),
       #Team MEmbers 
       url(r'^team_memder_(?P<member_id>.*).dhtml$', 'views.team_memders',name='team_memders'),
+      
 
 )
 
