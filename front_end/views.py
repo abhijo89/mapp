@@ -270,6 +270,29 @@ def search_movie_by_category(request,category,category_item):
 	context['category_name'] = category
 	context =  dict(context, **extra_context(paginator, results_pages))
 	return render_to_response('main/search_movie_list.html', context, context_instance = RequestContext(request))
+
+def show_top_movie(request,category):
+	context = {}
+	if category =='boxoffice':
+		movie_list = Boxoffice.objects.order_by('-imdbid__rating')
+	elif category =='intheater':
+		movie_list = Intheaters.objects.order_by('-imdbid__rating')
+	elif category =='upcomming':
+		movie_list = Upcoming.objects.order_by('-imdbid__rating')
+	else:
+		movie_list = Opening.objects.order_by('-imdbid__rating')
+	paginator = Paginator(movie_list, paginator_total_result_count) 
+	page = int(request.GET.get('page', 1))
+	try:
+		results_pages = paginator.page(page)
+	except : # Standard Exception 
+		# If page is out of range (e.g. 9999) or No page found, deliver last page of results.
+		results_pages = paginator.page(paginator.num_pages)	
+		
+	context['categorys'] = results_pages.object_list
+	context['category_name'] = category
+	context =  dict(context, **extra_context(paginator, results_pages))
+	return render_to_response('main/top_movie_list.html', context, context_instance = RequestContext(request))
 	
 	
 def team_memders(request,member_id):
@@ -768,5 +791,3 @@ def save_move_to_db (title):
 		except Exception as e:
 			pass
 		return 0
-
-

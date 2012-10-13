@@ -3,11 +3,13 @@ from autoregister import autoregister
 from django.conf import settings
 from django.contrib import admin
 from main.sitemap import *
+from api.resource import *
 admin.autodiscover()
 autoregister('main')
 autoregister('front_end')
 #autoregister('tracking')
 autoregister('metatag')
+
 urlpatterns = patterns('main',
     # ============= MAIN URL ===============================
     url(r'^$', 'views.index', name='index'),
@@ -19,6 +21,9 @@ urlpatterns = patterns('main',
     # =========== ADMIN URL ================================
     url(r'^admin/', include(admin.site.urls)),
     (r'^tracking/', include('tracking.urls')),
+    url(r'^api-auth/', include('djangorestframework.urls', namespace='djangorestframework')),
+    url(r'^api/$', ListOrCreateModelView.as_view(resource=MyMovieResource)),
+    url(r'^api/(?P<pk>[^/]+)/$', InstanceModelView.as_view(resource=MyMovieResource)),
     
 )
 
@@ -44,6 +49,7 @@ urlpatterns += patterns('front_end',
       url(r'^home/contact-us/', 'views.contactview',name='contact-us'),
       #Team MEmbers 
       url(r'^team_memder_(?P<member_id>.*).dhtml$', 'views.team_memders',name='team_memders'),
+      url(r'^show/(?P<category>.*).dhtml$', 'views.show_top_movie',name='show_top_movie'),
       
 
 )
@@ -67,3 +73,6 @@ urlpatterns += patterns('',
 urlpatterns += patterns('django.contrib.staticfiles.views',
     url(r'^static/(?P<path>.*)$', 'serve'),
 )
+
+
+

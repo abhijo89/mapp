@@ -192,7 +192,7 @@
 				  {%if nav.subnavigation_set.all %}
 					<div><ul>
 					 {% for sn in nav.subnavigation_set.all %}
-								<li><a href="{{ sn.get_absolute_url }}"><span>{{sn.title}}:</span></a></li>
+								<li><a href="{{ sn.get_absolute_url }}"><span>{{sn.title}}</span></a></li>
 					 {% endfor %}
                     </ul></div>
                    {% endif %}
@@ -203,8 +203,13 @@
                 </div>
             </div>
             <div class='clear'></div>
-            <div id="wrapper">{% block content %} {% endblock %}
+            
+            <div id="wrapper">
+				<p>This is pre-alpha version of MuviDB Website, Information on this websites are not verified any of the authorized person. So if you have any Query or Complaint please contact +917204785003. We are ready to remove the data within 12 hours.</p>
+				<div class="clear"></div>
+				{% block content %} {% endblock %}
                 <div class="clear"></div>
+                
             </div>
         </div>
         <div class="footer">

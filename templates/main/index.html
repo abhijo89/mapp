@@ -27,6 +27,7 @@
 	  </tr>
      {% endfor %}
     </table>
+     <a href ="{% url show_top_movie 'boxoffice' %}">More ...</a>
   </div>
   <div class="aux-content-widget-2">
     <h2> Top Intheater </h2>
@@ -43,6 +44,41 @@
 	  </tr>
      {% endfor %}
     </table>
+    <a href ="{% url show_top_movie 'intheater'%}">More ...</a>
+  </div>
+  <div class="aux-content-widget-2">
+     <h2> Top Upcomming Movie </h2>
+		<table width='150px'>
+		  <tr>
+		<td>Name</td>
+		<td>Rating</td>
+		  <tr>
+		 {% for upcomming_movie in upcomming_movies %}
+		
+		  <tr>
+			<td><a class='x-small' href="{% url movie upcomming_movie.imdbid.id %}">{{ upcomming_movie.imdbid.title|truncatewords:5|title }}</a></td>
+			<td>{{ upcomming_movie.imdbid.rating }}</td>
+		  </tr>
+		 {% endfor %}
+		</table>
+		<a href ="{% url show_top_movie 'upcomming' %}">More ...</a>
+  </div>
+  <div class="aux-content-widget-2">
+    <h2> Top Opening Movie </h2>
+		<table width='150px'>
+		  <tr>
+		<td>Name</td>
+		<td>Rating</td>
+		  <tr>
+		 {% for opening_movie in opening_movies %}
+		
+		  <tr>
+			<td><a class='x-small' href="{% url movie opening_movie.imdbid.id %}">{{ opening_movie.imdbid.title|truncatewords:5|title }}</a></td>
+			<td>{{ opening_movie.imdbid.rating }}</td>
+		  </tr>
+		 {% endfor %}
+		</table>
+		<a href ="{% url show_top_movie 'opening'%}">More ...</a>
   </div>
   {% endblock %}
 </div>
@@ -71,47 +107,24 @@
 		<a target="_top" href="http://www.adbrite.com/mb/commerce/purchase_form.php?opid=2222861&afsid=1"><img src="http://files.adbrite.com/mb/images/adbrite-your-ad-here-banner.gif" style="background-color:#CCCCCC;border:none;padding:0;margin:0;" alt="Your Ad Here" width="11" height="60" border="0" /></a></span>
 		<!-- End: adBrite -->
     </div>
+    <h2>Top 10 Movies</h2>
     <div class="clear"></div>
     <div class="aux-content-widget-2 submain">
      {% block sbmain-1%}
-     <h2> Top Upcomming Movie </h2>
-		<table width='150px'>
-		  <tr>
-		<td>Name</td>
-		<td>Rating</td>
-		  <tr>
-		 {% for upcomming_movie in upcomming_movies %}
 		
-		  <tr>
-			<td><a class='x-small' href="{% url movie upcomming_movie.imdbid.id %}">{{ upcomming_movie.imdbid.title|truncatewords:5|title }}</a></td>
-			<td>{{ upcomming_movie.imdbid.rating }}</td>
-		  </tr>
-		 {% endfor %}
-		</table>
      {% endblock %}
     </div>
     <div class="clear"></div>
     <div class="aux-content-widget-2 submain">
      {% block sbmain-2%}
-     <h2> Top Opening Movie </h2>
-		<table width='150px'>
-		  <tr>
-		<td>Name</td>
-		<td>Rating</td>
-		  <tr>
-		 {% for opening_movie in opening_movies %}
-		
-		  <tr>
-			<td><a class='x-small' href="{% url movie opening_movie.imdbid.id %}">{{ opening_movie.imdbid.title|truncatewords:5|title }}</a></td>
-			<td>{{ opening_movie.imdbid.rating }}</td>
-		  </tr>
-		 {% endfor %}
-		</table>
+    
      {% endblock %}
     </div>
     <div class="clear"></div>
   {% endblock %}
 </div>
+
+
 <div class="sidebar right">
   {% block sidebar_right %}
   <div class="aux-content-widget-2">
