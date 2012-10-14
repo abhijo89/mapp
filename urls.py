@@ -50,8 +50,7 @@ urlpatterns += patterns('front_end',
       #Team MEmbers 
       url(r'^team_memder_(?P<member_id>.*).dhtml$', 'views.team_memders',name='team_memders'),
       url(r'^show/(?P<category>.*).dhtml$', 'views.show_top_movie',name='show_top_movie'),
-      
-
+      url(r'^show_country/(?P<category>.*).dhtml$', 'views.show_top_movie_country',name='show_top_movie_country'),
 )
 
 

@@ -93,6 +93,7 @@ MIDDLEWARE_CLASSES = (
     'mapp.tracking.middleware.VisitorTrackingMiddleware',
     'mapp.tracking.middleware.BannedIPMiddleware',
     'mapp.tracking.middleware.VisitorCleanUpMiddleware',
+    'mapp.middleware.LocationMiddleware',
 )
 
 ROOT_URLCONF = 'mapp.urls'

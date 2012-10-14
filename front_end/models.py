@@ -146,7 +146,7 @@ class City(models.Model):
     
     class Meta:
         verbose_name_plural = 'Cities'
-        ordering = ('name', )
+        ordering = ('-id', )
 
     def __unicode__(self):
         return self.name

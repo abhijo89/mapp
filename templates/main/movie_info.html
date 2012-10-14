@@ -21,7 +21,43 @@
 {% block content %} 
 
 {# MAIN BLOCK TO SHOW ALL INFORMARION #}
-
+<div class="sidebar left">
+  {% block sidebar-left %}
+  <div class="aux-content-widget-2">
+    <h2> Other Information </h2>
+	<p>Animation Department</p>
+	<p>Art Department</p>
+	<p>Art Direction</p>
+	<p>Assistant Directors</p>
+	<p>Camera And Electrical Departments</p>
+	<p>Casting Department</p>
+	<p>Casting Diiirectors</p>
+	<p>Casting Diiirectors</p>
+	<p>Cinematographeres</p>
+	<p>Costume Department</p>
+	<p>Costume Designers</p>
+	<p>Distributorss</p>
+	<p>Make Up</p>
+	<p>Miscellaneous Companies</p>
+	<p>Miscellaneous Crew</p>
+	<p>Music Department</p>
+	<p>Original Music</p>
+	<p>Other Titles</p>
+	<p>Production Companies</p>
+	<p>Production Designers</p>
+	<p>Production Managers</p>
+	<p>Set Decorations</p>
+	<p>Sound Crew</p>
+	<p>Sound Mix</p>
+	<p>Special Effects Companies</p>
+	<p>Special Effects Departments</p>
+	<p>Stunt Performers</p>
+	<p>Transportation Departments</p>
+	<p>Visual Effects</p>
+	
+	</div>
+  {% endblock %}
+</div>
 <div class="container right">
 			<div class="aux-content-widget-2 movie_info_content">
 				{# Movie info #}
@@ -32,6 +68,11 @@
 						</div>
 						<div class='movie_basic_info'>
 								<h2>{{ movie.title|title }}</h2>
+								<label class='label-div'>Genre(s)</label> :{% for genre in movie.genres.all%} {{ genre }}, {% endfor %} <br>
+								<label class='label-div'>Language(s)</label> :{% for language in movie.languages.all%} {{ language }}, {% endfor %} <br>
+								<label class='label-div'>Countrie(s)</label> :{% for countrie in movie.countries.all%} {{ countrie }}, {% endfor %} <br>
+								<label class='label-div'>Year</label> : {{ movie.year }} <br>
+								<label class='label-div'>Aspect Ratio</label> : {{ movie.aspect_ration }} <br>
 								<label class='label-div'>Genre(s)</label> :{% for genre in movie.genres.all%} {{ genre }}, {% endfor %} <br>
 								<label class='label-div'>Language(s)</label> :{% for language in movie.languages.all%} {{ language }}, {% endfor %} <br>
 								<label class='label-div'>Countrie(s)</label> :{% for countrie in movie.countries.all%} {{ countrie }}, {% endfor %} <br>
@@ -89,11 +130,6 @@ try{var AdBrite_Iframe=window.top!=window.self?2:1;var AdBrite_Referrer=document
 <!-- End: adBrite -->
 			</div>
 		</div>
-		<div class="aux-content-widget-2 movie_info_content">
-			{# Other information #}
-			<div>
-					{# Basic information ablot movie such as name,rating,year, mapp,total vote,totalreview,total vitited users ect#}
-			</div>
-		</div>
+		
 </div>
 {% endblock %}

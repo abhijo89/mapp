@@ -44,7 +44,17 @@ def index(request,template=''):
 def home(request,template='main/index.html'):
 	#if request.user.is_anonymous():
 		#return HttpResponseRedirect(reverse('index'))
-	context={}
+	try:
+		country = request.session['country']
+		
+		country_obj = Countries.objects.get(name= country)
+		new_movies = Movie.objects.filter(countries=country_obj).order_by('-rating')[:18]
+		boxoffice = Boxoffice.objects.filter(imdbid__countries=country_obj).order_by('-imdbid__rating')[:18]
+		context={'country':country,'new_movies':new_movies,'boxoffice':boxoffice}
+	except Exception as e:
+		new_movies = Movie.objects.all().order_by('-id')[:18]
+		boxoffice = Boxoffice.objects.all().order_by('-id')[:18]
+	context={'country':country,'new_movies':new_movies,'boxoffice':boxoffice}
 	return render_to_response('main/index.html', context, context_instance = RequestContext(request))
 
 def logout_view(request):
