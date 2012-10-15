@@ -29,6 +29,7 @@ urlpatterns = patterns('main',
 
 urlpatterns += patterns('front_end',
       #TEmplate view
+      url(r'^map.dhtml$', 'views.map_view',name='map_view'),
       url(r'^new_account$','views.register_view',name='register_view'),
       #From submit
       url(r'^register$','views.register',name='register'),
@@ -43,7 +44,8 @@ urlpatterns += patterns('front_end',
       url(r'^home/search/$','views.search_index',name='search_index'),
       url(r'^search/(?P<category>.*)/$','views.search',name='search'),
       url(r'^search/(?P<category>.*)/(?P<category_item>.*).dhtml$','views.search_movie_by_category',name='search_movie'),
-      url(r'^search.py','views.search_globel',name='search_globel'),
+      url(r'^search.dhtml','views.search_globel',name='search_globel'),
+      
       #Contact Us
       url(r'^home/contact/thankyou/', 'views.thankyou',name='search_index'),
       url(r'^home/contact-us/', 'views.contactview',name='contact-us'),
@@ -51,6 +53,7 @@ urlpatterns += patterns('front_end',
       url(r'^team_memder_(?P<member_id>.*).dhtml$', 'views.team_memders',name='team_memders'),
       url(r'^show/(?P<category>.*).dhtml$', 'views.show_top_movie',name='show_top_movie'),
       url(r'^show_country/(?P<category>.*).dhtml$', 'views.show_top_movie_country',name='show_top_movie_country'),
+     
 )
 
 

@@ -149,7 +149,9 @@
 			});		
       $('.cancel-button').live('click', function(){
 				$.fancybox.close();
-			});		
+			});	
+			
+	{% block extra-jquery %}{% endblock %}
     });
     </script>
     {% block extra-head %}{% endblock %}

@@ -331,7 +331,11 @@ def show_top_movie_country(request,category):
 	context =  dict(context, **extra_context(paginator, results_pages))
 	return render_to_response('main/top_movie_list.html', context, context_instance = RequestContext(request))
 	
+def map_view(request):
 	
+	address_obj = Address.objects.all()
+	context ={'address_obj':address_obj}
+	return render_to_response('main/vistors_map.html', context, context_instance = RequestContext(request))
 def team_memders(request,member_id):
 	
 	person = Team_Members.objects.get(id=member_id)

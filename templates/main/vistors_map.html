@@ -1,0 +1,104 @@
+{% extends "main/base.html" %}
+{% load movie_tags %}
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
+{% block title %} Visiters {% endblock %}
+{% block description %}{% endblock %}
+{% block keywords %} {% endblock %}
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+
+{% block extra-jquery %}
+	initialize();
+	google.maps.Map.prototype.markers = new Array();
+
+	google.maps.Map.prototype.getMarkers = function() {
+		return this.markers
+	};
+
+	google.maps.Map.prototype.clearMarkers = function() {
+		for(var i=0; i < this.markers.length; i++){
+			this.markers[i].setMap(null);
+		}
+		this.markers = new Array();
+	};
+
+	google.maps.Marker.prototype._setMap = google.maps.Marker.prototype.setMap;
+
+	google.maps.Marker.prototype.setMap = function(map) {
+		if (map) {
+			map.markers[map.markers.length] = this;
+		}
+		this._setMap(map);
+	}
+	function initialize() {
+		//var myLatlng = new google.maps.LatLng({% for deal in deals %}{% if forloop.first %}{{ deal.latitude }}, {{ deal.longitude }}{% endif %}{% endfor %});
+		var myLatlng = new google.maps.LatLng({% for address in address_obj %}{% if forloop.first %}{{ address.latitude }}, {{ address.longitude }}{% endif %}{% endfor %});
+		var myOptions = {
+			zoom: 8,
+			center: myLatlng,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+		var locations = [];            
+		{% for address in address_obj %}                
+			locations.push(['{{ address.name }}', {{ address.latitude }}, {{ address.longitude }}, {{ forloop.counter }}]);
+			
+		{% endfor %}
+		//clearMarkers();
+		setMarkers(map, locations);
+
+	}
+	function setMarkers(map, locations) {
+
+		var image = new google.maps.MarkerImage($("#map_canvas").attr('mimg'),
+		// This marker is 20 pixels wide by 32 pixels tall.
+		new google.maps.Size(20, 32),
+		// The origin for this image is 0,0.
+		new google.maps.Point(0,0),
+		// The anchor for this image is the base of the pinthedeal pin at 0,32.
+		new google.maps.Point(22, 32));
+			
+		var bounds = new google.maps.LatLngBounds();
+
+		for (var i = 0; i < locations.length; i++) {
+			var location = locations[i];
+			var myLatLng = new google.maps.LatLng(location[1], location[2]);
+			var marker = new google.maps.Marker({
+				position: myLatLng,
+				map: map,
+				//icon: image,
+				title: location[0],
+			});
+			bounds.extend(myLatLng);
+			map.fitBounds(bounds);
+		}
+	}
+{% endblock %}
+{% block extra-head %}
+	<style>
+		.container {margin-right: 20px; width: 800px; margin-top: 6px;padding-top: 10px;}
+		.movie_info_content{width:774px;float: none;}
+		.content-widget {width:200px; float: none;}
+		.movie_photo{display:block; width: 200px; height: 250px;margin-left: 0px; margin-right: 20px; margin-bottom: 20px;float: left;}
+		.movie_basic_info {float:left;min-height: 250px; width: 540px;}
+		.label-div {width: 130px; display:block; float: left;}
+		.td-div{min-width: 100px; }
+		.cast_photo{display:block; width: 100px; height: 100px;margin-left: 0px; margin-right: 5px; float: left;}
+	</style>
+{% endblock %}
+
+{% block content %} 
+
+	{# MAIN BLOCK TO SHOW ALL INFORMARION #}
+	<div class="sidebar left">
+	  {% block sidebar-left %}
+		<div class="aux-content-widget-2">
+		
+		</div>
+	  {% endblock %}
+	</div>
+	<div class="container right">
+		<div id="map_canvas" mimg="{{ MEDIA_URL }}images/main/pin.png" ></div>
+		
+
+	</div>
+{% endblock %}
