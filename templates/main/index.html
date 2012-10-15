@@ -112,7 +112,7 @@
     <div class="clear"></div>
     <div class="aux-content-widget-2 submain">
      {% block sbmain-1%}
-		<h2>Top 18 Movies from {{country}}</h2>
+		<h2>Top 18 Movies from {{country}}, {{city}}</h2>
 		{%for movie in new_movies %}
 		<div style="float:left;margin: 10px;">
 			<a href="{% url movie movie.id %}"><img src="http://www.softlinkweb.com/muvidb/{{movie|split_url}}" style="width:75px;height:100px;"></a>
@@ -125,7 +125,7 @@
     <div class="clear"></div>
     <div class="aux-content-widget-2 submain">
      {% block sbmain-2%}
-		<h2> 18 Box Office Movies from {{country}}</h2>
+		<h2> 18 Box Office Movies from {{country}}, {{city}}</h2>
 		{%for movie in boxoffice %}
 		<div style="float:left;margin: 10px;">
 			<a href="{% url movie movie.imdbid.id %}"><img src="http://www.softlinkweb.com/muvidb/{{movie.imdbid|split_url}}" style="width:75px;height:100px;"></a>
