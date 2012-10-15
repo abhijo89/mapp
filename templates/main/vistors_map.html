@@ -5,7 +5,7 @@
 {% block description %}{% endblock %}
 {% block keywords %} {% endblock %}
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
 {% block extra-jquery %}
 	initialize();
 	google.maps.Map.prototype.markers = new Array();
@@ -85,7 +85,7 @@
 		.cast_photo{display:block; width: 100px; height: 100px;margin-left: 0px; margin-right: 5px; float: left;}
 	</style>
 {% endblock %}
-<script src="http://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
+
 {% block content %} 
 
 	{# MAIN BLOCK TO SHOW ALL INFORMARION #}

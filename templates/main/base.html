@@ -10,6 +10,7 @@
         <title>{% if metatag.title %}{{ metatag.title }}{%else%}{% block title %} Welcome MuviDB{% endblock %}{% endif %}</title>
         <meta name="description" content="{{ metatag.description }} {% block description %}{% endblock %}"/>
         <meta name="alexaVerifyID" content="vFi0Qd8XkotWFrWSapX7tW5Qn8E" />
+        
         <link rel="icon" type="image/ico" href="{% url index %}favicon.ico" />
         <link rel="icon" href="{{ MEDIA_URL }}images/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="{{ MEDIA_URL }}images/favicon.ico" type="image/x-icon"> 
@@ -22,6 +23,7 @@
         <script type="text/javascript" src="{{ MEDIA_URL }}js/highcharts.js"></script>
         <script type="text/javascript" src="{{ MEDIA_URL }}js/themes/grid.js"></script>
         <script type="text/javascript" src="{{ MEDIA_URL }}js/modules/exporting.js"></script>
+        <script src="http://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
         <link rel="stylesheet" href="{{ MEDIA_URL }}css/menu.css" type="text/css" media="screen">
         <link rel="stylesheet" href="{{ MEDIA_URL }}css/style.css" type="text/css" media="screen">
         <script type="text/javascript" src=" {{ MEDIA_URL }}js/menu.js"></script>
