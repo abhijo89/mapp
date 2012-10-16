@@ -14,6 +14,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from mapp.recaptcha_works.decorators import fix_recaptcha_remote_ip
 
+MONTH = ['January','February','March','April','May','June','July','August','September','October','November','December']
 @fix_recaptcha_remote_ip
 def index(request,template=''):
   error=''
@@ -44,13 +45,17 @@ def index(request,template=''):
 def home(request,template='main/index.html'):
 	#if request.user.is_anonymous():
 		#return HttpResponseRedirect(reverse('index'))
+	month = datetime.datetime.now().strftime("%B")
+	day = datetime.datetime.now().strftime("%d")
+	query = day+" "+month
 	try:
 		country = request.session['country']
 		city = request.session['city']
 		country_obj = Countries.objects.get(name= country)
 		new_movies = Movie.objects.filter(countries=country_obj).order_by('-rating')[:18]
 		boxoffice = Boxoffice.objects.filter(imdbid__countries=country_obj).order_by('-imdbid__rating')[:18]
-		context={'country':country,'new_movies':new_movies,'boxoffice':boxoffice}
+		person = Person.objects.filter(date_of_birth=query)[:30]
+		context={'country':country,'new_movies':new_movies,'boxoffice':boxoffice,'person':person}
 	except Exception as e:
 		new_movies = Movie.objects.all().order_by('-id')[:18]
 		boxoffice = Boxoffice.objects.all().order_by('-id')[:18]

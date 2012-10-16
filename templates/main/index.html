@@ -135,6 +135,20 @@
      {% endblock %}
     </div>
     <div class="clear"></div>
+    {%if person%}
+     <div class="aux-content-widget-2 submain">
+     {% block sbmain-3%}
+		<h2> Celebrities </h2>
+		{%for p in person %}
+		<div style="float:left;margin: 10px;">
+			{{p.name}}
+		</div>
+		{%endfor%}
+		<div class="clear"></div>
+     {% endblock %}
+    </div>
+    {%endif%}
+    <div class="clear"></div>
   {% endblock %}
 </div>
 
