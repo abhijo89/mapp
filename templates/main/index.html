@@ -140,7 +140,7 @@
 		<h2> Celebrities </h2>
 		{%for p in person %}
 		<div style="float:left;margin: 10px;">
-			{{p.name}}
+			<a href={% url person_info p.id %}><img class='cast_photo' src="http://www.softlinkweb.com/muvidb/cast/{{p|get_cast_photo}}" style="width:75px;height:100px;"></a>
 		</div>
 		{%endfor%}
 		<div class="clear"></div>
