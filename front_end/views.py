@@ -474,8 +474,11 @@ def fnMovie (the_matrix,sucess_factor,title_from_url):
 		summary = the_matrix.summary()
 	except KeyError as e:
 		pass
-	tblmovie, created = Movie.objects.get_or_create(title = title, votes = votes, year = year, aspect_ration = aspect_ratio, mpaa = mpaa,
-	rating = rating, imdbid = imdbid, top_250_rank = top_250_rank, cover_url = cover_url, plot_outline = plot_outline, summary = summary)
+	try:
+		tblmovie =Movie.objects.get(imdbid = imdbid)
+	except :
+		tblmovie, created = Movie.objects.get_or_create(title = title, votes = votes, year = year, aspect_ration = aspect_ratio, mpaa = mpaa,
+		rating = rating, imdbid = imdbid, top_250_rank = top_250_rank, cover_url = cover_url, plot_outline = plot_outline, summary = summary)
 	return tblmovie
 
 
