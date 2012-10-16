@@ -39,7 +39,7 @@ function setMarkers(map, locations) {
 			title: location[0],
 		});
 		bounds.extend(myLatLng);
-		//map.fitBounds(bounds);
+		map.fitBounds(bounds);
 	}
 }
 {% endblock %}
