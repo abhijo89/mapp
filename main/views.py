@@ -48,15 +48,13 @@ def home(request,template='main/index.html'):
 	month = datetime.datetime.now().strftime("%B")
 	day = datetime.datetime.now().strftime("%d")
 	query = day+" "+month
-	print "query",query
 	try:
 		country = request.session['country']
 		city = request.session['city']
 		country_obj = Countries.objects.get(name= country)
 		new_movies = Movie.objects.filter(countries=country_obj).order_by('-rating')[:18]
 		boxoffice = Boxoffice.objects.filter(imdbid__countries=country_obj).order_by('-imdbid__rating')[:18]
-		person = Person.objects.filter(date_of_birth=query)
-		print person
+		person = Person.objects.filter(date_of_birth=query)[:60]
 		context={'country':country,'new_movies':new_movies,'boxoffice':boxoffice,'person':person}
 	except Exception as e:
 		new_movies = Movie.objects.all().order_by('-id')[:18]
