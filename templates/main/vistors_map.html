@@ -1,9 +1,11 @@
 {% extends "main/base.html" %}
 {% load movie_tags %}
 
-{% block title %} Visiters {% endblock %}
-{% block description %}{% endblock %}
-{% block keywords %} {% endblock %}
+{% block title %} Visitors {% endblock %}
+{% block description %}
+This page shows visitors  in real time and displays their locations in Google Map
+{% endblock %}
+{% block keywords %}MuviDB,Google Map,graph Visitors information{% endblock %}
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
 {% block extra-java %}
