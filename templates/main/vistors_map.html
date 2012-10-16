@@ -6,72 +6,42 @@
 {% block keywords %} {% endblock %}
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
-{% block extra-jquery %}
-	initialize();
-	google.maps.Map.prototype.markers = new Array();
-
-	google.maps.Map.prototype.getMarkers = function() {
-		return this.markers
-	};
-
-	google.maps.Map.prototype.clearMarkers = function() {
-		for(var i=0; i < this.markers.length; i++){
-			this.markers[i].setMap(null);
-		}
-		this.markers = new Array();
-	};
-
-	google.maps.Marker.prototype._setMap = google.maps.Marker.prototype.setMap;
-
-	google.maps.Marker.prototype.setMap = function(map) {
-		if (map) {
-			map.markers[map.markers.length] = this;
-		}
-		this._setMap(map);
-	}
-	function initialize() {
-		//var myLatlng = new google.maps.LatLng({% for deal in deals %}{% if forloop.first %}{{ deal.latitude }}, {{ deal.longitude }}{% endif %}{% endfor %});
-		var myLatlng = new google.maps.LatLng({% for address in address_obj %}{% if forloop.first %}{{ address.latitude }}, {{ address.longitude }}{% endif %}{% endfor %});
-		var myOptions = {
-			zoom: 8,
+{% block extra-java %}
+ google.maps.event.addDomListener(window, 'load', function() {
+	var myLatlng = new google.maps.LatLng({% for address in address_obj %}{% if forloop.first %}{{ address.latitude }}, {{ address.longitude }}{% endif %}{% endfor %});
+	
+	var myOptions = {
+			zoom: 13,
 			center: myLatlng,
 			mapTypeId: google.maps.MapTypeId.ROADMAP
 		};
-		var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-		var locations = [];            
-		{% for address in address_obj %}                
-			locations.push(['{{ address.name }}', {{ address.latitude }}, {{ address.longitude }}, {{ forloop.counter }}]);
-			
-		{% endfor %}
-		//clearMarkers();
-		setMarkers(map, locations);
+		
+    var map = new google.maps.Map(document.getElementById('map'),myOptions);
+	var locations = []; 
+	{% for address in address_obj %}
+		locations.push(['{{ address.name }}', {{ address.latitude }}, {{ address.longitude }}, {{ forloop.counter }}]);
+	{% endfor %}
+	setMarkers(map, locations);
+  });
+  
+function setMarkers(map, locations) {
+	var image = new google.maps.MarkerImage("{{ MEDIA_URL }}images/main/pin-small.png",new google.maps.Size(20, 42),new google.maps.Point(0,0),new google.maps.Point(22, 42));
+	
+	var bounds = new google.maps.LatLngBounds();
 
+	for (var i = 0; i < locations.length; i++) {
+		var location = locations[i];
+		var myLatLng = new google.maps.LatLng(location[1], location[2]);
+		var marker = new google.maps.Marker({
+			position: myLatLng,
+			map: map,
+			icon: image,
+			title: location[0],
+		});
+		bounds.extend(myLatLng);
+		//map.fitBounds(bounds);
 	}
-	function setMarkers(map, locations) {
-
-		var image = new google.maps.MarkerImage($("#map_canvas").attr('mimg'),
-		// This marker is 20 pixels wide by 32 pixels tall.
-		new google.maps.Size(20, 32),
-		// The origin for this image is 0,0.
-		new google.maps.Point(0,0),
-		// The anchor for this image is the base of the pinthedeal pin at 0,32.
-		new google.maps.Point(22, 32));
-			
-		var bounds = new google.maps.LatLngBounds();
-
-		for (var i = 0; i < locations.length; i++) {
-			var location = locations[i];
-			var myLatLng = new google.maps.LatLng(location[1], location[2]);
-			var marker = new google.maps.Marker({
-				position: myLatLng,
-				map: map,
-				//icon: image,
-				title: location[0],
-			});
-			bounds.extend(myLatLng);
-			map.fitBounds(bounds);
-		}
-	}
+}
 {% endblock %}
 {% block extra-head %}
 	<style>
@@ -83,6 +53,7 @@
 		.label-div {width: 130px; display:block; float: left;}
 		.td-div{min-width: 100px; }
 		.cast_photo{display:block; width: 100px; height: 100px;margin-left: 0px; margin-right: 5px; float: left;}
+		#map{ height: 504px; }
 	</style>
 {% endblock %}
 
@@ -97,8 +68,8 @@
 	  {% endblock %}
 	</div>
 	<div class="container right">
-		<div id="map_canvas" mimg="{{ MEDIA_URL }}images/main/pin.png" ></div>
-		
-
+		<div id="map"> Hello </div>
+	
 	</div>
 {% endblock %}
+

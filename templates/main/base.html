@@ -70,6 +70,7 @@
         </style>
 	
         <script type="text/javascript">
+			{% block extra-java %}{% endblock %}
             var _gaq = _gaq || [];
             _gaq.push(['_setAccount', '{% if metatag.google_pagetrack_customvar %}{{metatag.google_pagetrack_customvar}} {%else%} UA-26444739-1 {%endif%}']);
             _gaq.push(['_trackPageview']);
