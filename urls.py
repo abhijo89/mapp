@@ -29,7 +29,7 @@ urlpatterns = patterns('main',
 
 urlpatterns += patterns('front_end',
       #TEmplate view
-      url(r'^map.dhtml$', 'views.map_view',name='map_view'),
+      url(r'^home/map/$', 'views.map_view',name='map_view'),
       url(r'^new_account$','views.register_view',name='register_view'),
       #From submit
       url(r'^register$','views.register',name='register'),
