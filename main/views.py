@@ -59,7 +59,7 @@ def home(request,template='main/index.html'):
 	except Exception as e:
 		new_movies = Movie.objects.all().order_by('-id')[:18]
 		boxoffice = Boxoffice.objects.all().order_by('-id')[:18]
-	context={'country':country,'city':city,'new_movies':new_movies,'boxoffice':boxoffice,'person':person}
+	context={'country':country,'city':city,'new_movies':new_movies,'boxoffice':boxoffice,'person':person,'date':query}
 	return render_to_response('main/index.html', context, context_instance = RequestContext(request))
 
 def logout_view(request):
