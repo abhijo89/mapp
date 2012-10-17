@@ -52,7 +52,7 @@ def home(request,template='main/index.html'):
 		country = request.session['country']
 		city = request.session['city']
 		country_obj = Countries.objects.get(name= country)
-		new_movies = Movie.objects.filter(countries=country_obj).order_by('-rating')[:18]
+		new_movies = Movie.objects.filter(countries=country_obj,cover_url__isnull=False).order_by('-rating')[:18]
 		boxoffice = Boxoffice.objects.filter(imdbid__countries=country_obj).order_by('-imdbid__rating')[:18]
 		person = Person.objects.filter(date_of_birth=query,photo__isnull=False)[:60]
 		context={'country':country,'new_movies':new_movies,'boxoffice':boxoffice,'person':person}
