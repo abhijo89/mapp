@@ -48,6 +48,7 @@ def home(request,template='main/index.html'):
 	month = datetime.datetime.now().strftime("%B")
 	day = datetime.datetime.now().strftime("%d")
 	query = day+" "+month
+    
 	try:
 		country = request.session['country']
 		city = request.session['city']
