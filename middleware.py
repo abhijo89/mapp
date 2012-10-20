@@ -8,7 +8,7 @@ class LocationMiddleware(object):
 		if not request.session.get('city'):
 			ip = request.META['REMOTE_ADDR']
 			if ip == '127.0.0.1':
-				ip = '117.198.111.22'
+				ip = '72.99.237.123'
 			if ip:
 				f = urllib2.urlopen('http://api.ipinfodb.com/v3/ip-city/?key=a13198e66f807a846e1f2b7ad4f5e0027735d56109dc3b114f5a330da411bfc5&ip='+ip)
 				str = f.read()
@@ -24,7 +24,10 @@ class LocationMiddleware(object):
 					#Save this info to the db
 					#if not request.user.is_anonymous():
 					#profile = request.user.get_profile()
-					current_country ,created =Countries.objects.get_or_create(name=country,code=country_code)
+					try:
+						current_country = Countries.objects.get(code=country_code)
+					except:
+						current_country ,created =Countries.objects.get_or_create(name=country,code=country_code)
 					current_city ,created = City.objects.get_or_create(name=city,country=current_country,slug=slugify(city),live=True)
 					current_state ,created = State.objects.get_or_create(name=state)
 					current_address, created = Address.objects.get_or_create(latitude=latitude, longitude=longitude, city=current_city,state=current_state,name = country)
