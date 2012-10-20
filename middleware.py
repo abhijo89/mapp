@@ -25,9 +25,9 @@ class LocationMiddleware(object):
 					#if not request.user.is_anonymous():
 					#profile = request.user.get_profile()
 					try:
-						current_country = Countries.objects.get(code=country_code)
+						current_country = Countries.objects.get(code__icontains = country_code)
 					except:
-						current_country ,created =Countries.objects.get_or_create(name=country,code=country_code)
+						current_country ,created = Countries.objects.get_or_create(name=country,code=country_code)
 					current_city ,created = City.objects.get_or_create(name=city,country=current_country,slug=slugify(city),live=True)
 					current_state ,created = State.objects.get_or_create(name=state)
 					current_address, created = Address.objects.get_or_create(latitude=latitude, longitude=longitude, city=current_city,state=current_state,name = country)
