@@ -226,8 +226,8 @@ def search_index(request):
 	
 def search(request,category):
 	user = request.user
-	#if user.is_anonymous():
-			#return HttpResponseRedirect(reverse('index'))
+	if user.is_anonymous():
+			return HttpResponseRedirect(reverse('index'))
 	context ={}
 	category = category.title()
 
@@ -243,9 +243,10 @@ def search(request,category):
 	return render_to_response('main/search_category.html', context, context_instance = RequestContext(request))
 	
 def search_movie_by_category(request,category,category_item):
+	
 	user = request.user
-	#if user.is_anonymous():
-			#return HttpResponseRedirect(reverse('index'))
+	if user.is_anonymous():
+			return HttpResponseRedirect(reverse('index'))
 	
 	context = {}
 	if category == 'Language':	
