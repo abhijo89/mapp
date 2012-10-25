@@ -13,6 +13,8 @@ from django.core.mail import send_mail
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from mapp.recaptcha_works.decorators import fix_recaptcha_remote_ip
+import time
+import fbconsole 
 
 MONTH = ['January','February','March','April','May','June','July','August','September','October','November','December']
 @fix_recaptcha_remote_ip
@@ -63,7 +65,20 @@ def home(request,template='main/index.html'):
         person = Person.objects.filter(date_of_birth=query,photo__isnull=False)[:60]
 	context={'country':country,'city':city,'new_movies':new_movies,'boxoffice':boxoffice,'person':person,'date':query}
 	return render_to_response('main/index.html', context, context_instance = RequestContext(request))
-
+def fbpost(request):
+	fbconsole.AUTH_SCOPE = ['publish_stream', 'publish_checkins']
+	fbconsole.authenticate()
+	month = datetime.datetime.now().strftime("%B")
+	day = datetime.datetime.now().strftime("%d")
+	query = day+" "+month
+	person = Person.objects.filter(date_of_birth=query,photo__isnull=False)[:60]
+	for p in person:
+		url = "http://muvidb.com/cast_%d.dhtml"%p.id
+		print url 
+		fbconsole.post('/me/feed', {'link':url})
+		time.sleep(30)
+		
+	return HttpResponseRedirect(reverse('home'))
 def logout_view(request):
   logout(request)
   return HttpResponseRedirect(reverse('index'))

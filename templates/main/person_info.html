@@ -1,5 +1,5 @@
 {% extends "main/index.html" %}
-{% block description %}{{ person.default_info}} {% endblock %}
+{% block description %}{{ person.biodata|truncatewords:100|title}} {% endblock %}
 {% load movie_tags %}
 {% block extra-head %}
 

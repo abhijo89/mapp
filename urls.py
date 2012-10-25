@@ -7,13 +7,14 @@ from api.resource import *
 admin.autodiscover()
 autoregister('main')
 autoregister('front_end')
-#autoregister('tracking')
+autoregister('tracking')
 autoregister('metatag')
 
 urlpatterns = patterns('main',
     # ============= MAIN URL ===============================
     url(r'^$', 'views.index', name='index'),
     url(r'^home/$', 'views.home', name='home'),
+    url(r'^fbpost/$', 'views.fbpost', name='fbpost'),
     url(r'^logout/$', 'views.logout_view', name='logout'),
     url(r'^movie/(?P<movie_id>.*)/$','views.movie_info',name='movie'),
     #===========================================================
@@ -21,6 +22,7 @@ urlpatterns = patterns('main',
     # =========== ADMIN URL ================================
     url(r'^admin/', include(admin.site.urls)),
     (r'^tracking/', include('tracking.urls')),
+    
     url(r'^api-auth/', include('djangorestframework.urls', namespace='djangorestframework')),
     url(r'^api/$', ListOrCreateModelView.as_view(resource=MyMovieResource)),
     url(r'^api/(?P<pk>[^/]+)/$', InstanceModelView.as_view(resource=MyMovieResource)),
@@ -75,6 +77,5 @@ urlpatterns += patterns('',
 urlpatterns += patterns('django.contrib.staticfiles.views',
     url(r'^static/(?P<path>.*)$', 'serve'),
 )
-
 
 
