@@ -65,6 +65,7 @@ def home(request,template='main/index.html'):
         person = Person.objects.filter(date_of_birth=query,photo__isnull=False)[:60]
 	context={'country':country,'city':city,'new_movies':new_movies,'boxoffice':boxoffice,'person':person,'date':query}
 	return render_to_response('main/index.html', context, context_instance = RequestContext(request))
+	
 def fbpost(request):
 	fbconsole.AUTH_SCOPE = ['publish_stream', 'publish_checkins']
 	fbconsole.authenticate()
@@ -73,8 +74,7 @@ def fbpost(request):
 	query = day+" "+month
 	person = Person.objects.filter(date_of_birth=query,photo__isnull=False)[:60]
 	for p in person:
-		url = "http://muvidb.com/cast_%d.dhtml"%p.id
-		print url 
+		url = "http://muvidb.com/cast_%d.dhtml"%p.id 
 		fbconsole.post('/me/feed', {'link':url})
 		time.sleep(30)
 		
