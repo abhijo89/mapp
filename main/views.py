@@ -20,7 +20,7 @@ MONTH = ['January','February','March','April','May','June','July','August','Sept
 @fix_recaptcha_remote_ip
 def index(request,template=''):
   error=''
-  
+  return HttpResponseRedirect(reverse('home'))
   if request.user.is_anonymous():
       if request.POST:
         form = LoginForm(data=request.POST)
