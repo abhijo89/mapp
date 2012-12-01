@@ -64,7 +64,7 @@
 				<div>
 						{# Basic information ablot movie such as name,rating,year, mapp,total vote,totalreview,total vitited users ect#}
 						<div class='movie_photo'>
-							<img src="{{image}}">
+							<!--<img src="{{image}}"> -->
 						</div>
 						<div class='movie_basic_info'>
 								<h2>{{ movie.title|title }}</h2>
@@ -102,7 +102,9 @@
 					
 					{%for cast in movie.cast.all %}
 					<tr>
-						<td><img class='cast_photo' src="http://www.softlinkweb.com/muvidb/cast/{{cast.name|get_cast_photo}}"></td>
+						<td>
+							<!-- <img class='cast_photo' src="http://www.softlinkweb.com/muvidb/cast/{{cast.name|get_cast_photo}}">-->
+							</td>
 						<td><a href={% url person_info cast.name.id %}>{{cast.name}}</a></td>
 						<td>{{cast.charactor|get_cast_charactor_name}}</td>
 					</tr>
@@ -115,7 +117,8 @@
 			{# Cast and charactor #}
 			<div>
 					{# Basic information ablot movie such as name,rating,year, mapp,total vote,totalreview,total vitited users ect#}
-					<!-- Begin: adBrite, Generated: 2012-09-22 4:39:51  -->
+					
+					<!-- Begin: adBrite, Generated: 2012-09-22 4:39:51  
 <script type="text/javascript">
 var AdBrite_Title_Color = '0000FF';
 var AdBrite_Text_Color = '000000';
