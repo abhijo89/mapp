@@ -116,7 +116,9 @@
 		<h2>Top 18 Movies from {{country}}, {{city}}</h2>
 		{%for movie in new_movies %}
 		<div style="float:left;margin: 10px;">
-			<a href="{% url movie movie.id %}"><img src="http://www.softlinkweb.com/muvidb/{{movie|split_url}}" style="width:75px;height:100px;"></a>
+			<a href="{% url movie movie.id %}"> {{ movie.name }}
+			<!--<img src="http://www.softlinkweb.com/muvidb/{{movie|split_url}}" style="width:75px;height:100px;">-->
+			</a>
 		</div>
 		{%endfor%}
 		<a href="{%url show_top_movie_country country %}"> More..</a>
@@ -129,7 +131,11 @@
 		<h2> 18 Box Office Movies from {{country}}, {{city}}</h2>
 		{%for movie in boxoffice %}
 		<div style="float:left;margin: 10px;">
-			<a href="{% url movie movie.imdbid.id %}"><img src="http://www.softlinkweb.com/muvidb/{{movie.imdbid|split_url}}" style="width:75px;height:100px;"></a>
+			<a href="{% url movie movie.imdbid.id %}">
+				{{ movie.name }}
+				<!--<img src="http://www.softlinkweb.com/muvidb/{{movie.imdbid|split_url}}" style="width:75px;height:100px;">-->
+				
+			</a>
 		</div>
 		{%endfor%}
 		<div class="clear"></div>
@@ -141,7 +147,10 @@
 		<h2> Celebrities on {{date}}</h2>
 		{%for p in person %}
 		<div style="float:left;margin: 10px;">
-			<a href={% url person_info p.id %}><img class='cast_photo' src="http://www.softlinkweb.com/muvidb/cast/{{p|get_cast_photo}}" style="width:75px;height:100px;"></a>
+			<a href={% url person_info p.id %}>
+				{{ person_info.name }}<!--
+				<img class='cast_photo' src="http://www.softlinkweb.com/muvidb/cast/{{p|get_cast_photo}}" style="width:75px;height:100px;">-->
+				</a>
 		</div>
 		{%endfor%}
 		<div class="clear"></div>
