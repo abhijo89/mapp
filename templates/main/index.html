@@ -115,7 +115,7 @@
 		{%for movie in new_movies %}
 		<div style="float:left;margin: 10px;">
 			<a href="{% url movie movie.id %}"> {{ movie.title }}
-			<!--<img src="http://www.softlinkweb.com/muvidb/{{movie|split_url}}" style="width:75px;height:100px;">-->
+			
 			</a>
 		</div>
 		{%endfor%}
@@ -131,7 +131,7 @@
 		<div style="float:left;margin: 10px;">
 			<a href="{% url movie movie.imdbid.id %}">
 				{{ movie.title }}
-				<!--<img src="http://www.softlinkweb.com/muvidb/{{movie.imdbid|split_url}}" style="width:75px;height:100px;">-->
+				
 				
 			</a>
 		</div>
@@ -147,8 +147,8 @@
 		{%for p in person %}
 		<div style="float:left;margin: 10px;">
 			<a href={% url person_info p.id %}>
-				{{ person_info.name }}<!--
-				<img class='cast_photo' src="http://www.softlinkweb.com/muvidb/cast/{{p|get_cast_photo}}" style="width:75px;height:100px;">-->
+				{{ person_info.name }}
+				
 				</a>
 		</div>
 		{%endfor%}
