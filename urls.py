@@ -13,6 +13,7 @@ autoregister('metatag')
 urlpatterns = patterns('main',
     # ============= MAIN URL ===============================
     url(r'^$', 'views.index', name='index'),
+    url(r'^delorie.html','views.home', name='home_test'),
     url(r'^home/$', 'views.home', name='home'),
     url(r'^fbpost/$', 'views.fbpost', name='fbpost'),
     url(r'^logout/$', 'views.logout_view', name='logout'),
